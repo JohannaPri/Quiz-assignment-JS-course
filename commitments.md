@@ -14,8 +14,8 @@
 
 - Fanny:
 
-  - Innanför komfortzon:
-  - Utanför komfortzon:
+  - Innanför komfortzon: Brainstorming, design och CSS. 
+  - Utanför komfortzon: Påbörja kod (JS) på rak arm utan lite planering och research innan. 
 
 - Johanna:
 
@@ -53,8 +53,8 @@
 
 - Fanny:
 
-  - Roligt:
-  - Mindre roligt:
+  - Roligt: Brainstorma, göra nya funktioner i JS (när det funkar) och stylea dem så något roligt interaktivt händer på sidan, koda ihop, designa. 
+  - Mindre roligt: Stress-skriva kod, felsöka stora invecklade problem.
 
 - Johanna:
 
@@ -105,5 +105,7 @@
 
 ### Underskrivet av:
 @JohannaPri
+
+@fannyestrom
 
 
