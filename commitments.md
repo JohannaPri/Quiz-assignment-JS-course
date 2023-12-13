@@ -1,6 +1,6 @@
 # Group Contract - The Lemons Quiz
 
-### Agreement
+### Agreements
 
 - Sara:
 
@@ -19,8 +19,8 @@
 
 - Johanna:
 
-  - Innanför komfortzon:
-  - Utanför komfortzon:
+  - Innanför komfortzon: Idéer, design, struktur, upplägg, felsöka i kod, tyda kod. 
+  - Utanför komfortzon: Skriva egen kod själv på en blank sida. Har svårt att se och veta hur och vart jag ska börja. 
 
 - Ridwaan:
   - Innanför komfortzon:
@@ -58,8 +58,8 @@
 
 - Johanna:
 
-  - Roligt:
-  - Mindre roligt:
+  - Roligt: Att komma med idéer, designa, arbeta tillsammans (brainstorm), koda tillsammans (liveShare), strukturera och planera ett projekt.
+  - Mindre roligt: Att skriva egen kod själv (detta för jag tycker det är svårt). 
 
 - Ridwaan:
 
@@ -104,3 +104,6 @@
 ##### Alla fyller i kontraktet och skriver under senast 231215. Alla gör sedan en commit till main.
 
 ### Underskrivet av:
+@JohannaPri
+
+
