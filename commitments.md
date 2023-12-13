@@ -9,8 +9,8 @@
 
 - Regina:
 
-  - Innanför komfortzon:
-  - Utanför komfortzon:
+  - Innanför komfortzon: Struktur, basic design och kodning
+  - Utanför komfortzon: Git, avancerad kodning
 
 - Fanny:
 
@@ -48,8 +48,8 @@
 
 - Regina:
 
-  - Roligt:
-  - Mindre roligt:
+  - Roligt: Det mesta
+  - Mindre roligt: Git
 
 - Fanny:
 
@@ -107,5 +107,7 @@
 @JohannaPri
 
 @fannyestrom
+
+@ReginaJM
 
 
