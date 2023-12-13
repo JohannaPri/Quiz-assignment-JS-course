@@ -39,7 +39,7 @@
 
 #### The project
 
-- Ambitionsnivå: G men finns tid/energi/motivation kan vi göra VG-delar också. Gruppen beslutar detta tillsammans.
+- Ambitionsnivå: G men finns tid/energi/motivation kan vi göra "plus i kanten"-delar också. Gruppen beslutar detta tillsammans.
 - Ingen av gruppmedlemmarna (Ridwaan?) har några tidigare kunskaper inom TypeScript/JavaScript.
 - Sara:
 
