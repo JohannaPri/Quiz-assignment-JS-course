@@ -41,6 +41,8 @@
 
 - Ambitionsnivå: G men finns tid/energi/motivation kan vi göra "plus i kanten"-delar också. Gruppen beslutar detta tillsammans.
 - Ingen av gruppmedlemmarna har några tidigare kunskaper inom TypeScript/JavaScript.
+
+
 - Sara:
 
   - Roligt: Problemlösning (roligast när det funkar), jobba tillsammans på olika sätt kanske ffa diskutera med andra (men trivs också med att jobba själv, är introvert i grunden), design
