@@ -14,13 +14,13 @@
 
 - Fanny:
 
-  - Innanför komfortzon: Brainstorming, design och CSS. 
-  - Utanför komfortzon: Påbörja kod (JS) på rak arm utan lite planering och research innan. 
+  - Innanför komfortzon: Brainstorming, design och CSS.
+  - Utanför komfortzon: Påbörja kod (JS) på rak arm utan lite planering och research innan.
 
 - Johanna:
 
-  - Innanför komfortzon: Idéer, design, struktur, upplägg, felsöka i kod, tyda kod. 
-  - Utanför komfortzon: Skriva egen kod själv på en blank sida. Har svårt att se och veta hur och vart jag ska börja. 
+  - Innanför komfortzon: Idéer, design, struktur, upplägg, felsöka i kod, tyda kod.
+  - Utanför komfortzon: Skriva egen kod själv på en blank sida. Har svårt att se och veta hur och vart jag ska börja.
 
 - Ridwaan:
   - Innanför komfortzon:
@@ -40,7 +40,7 @@
 #### The project
 
 - Ambitionsnivå: G men finns tid/energi/motivation kan vi göra "plus i kanten"-delar också. Gruppen beslutar detta tillsammans.
-- Ingen av gruppmedlemmarna (Ridwaan?) har några tidigare kunskaper inom TypeScript/JavaScript.
+- Ingen av gruppmedlemmarna har några tidigare kunskaper inom TypeScript/JavaScript.
 - Sara:
 
   - Roligt:
@@ -53,21 +53,21 @@
 
 - Fanny:
 
-  - Roligt: Brainstorma, göra nya funktioner i JS (när det funkar) och stylea dem så något roligt interaktivt händer på sidan, koda ihop, designa. 
+  - Roligt: Brainstorma, göra nya funktioner i JS (när det funkar) och stylea dem så något roligt interaktivt händer på sidan, koda ihop, designa.
   - Mindre roligt: Stress-skriva kod, felsöka stora invecklade problem.
 
 - Johanna:
 
   - Roligt: Att komma med idéer, designa, arbeta tillsammans (brainstorm), koda tillsammans (liveShare), strukturera och planera ett projekt.
-  - Mindre roligt: Att skriva egen kod själv (detta för jag tycker det är svårt). 
+  - Mindre roligt: Att skriva egen kod själv (detta för jag tycker det är svårt).
 
 - Ridwaan:
 
   - Roligt:
   - Mindre roligt:
 
-- Lintinställningar: Uppdateras efter genomgång
-- Prettierinställningar: Uppdateras efter genomgång
+- EsLintinställningar: Vi använder grundinställningarna i projektet
+- Prettierinställningar: Vi använder grundinställningarna i projektet
 
 #### Commits
 
@@ -104,10 +104,9 @@
 ##### Alla fyller i kontraktet och skriver under senast 231215. Alla gör sedan en commit till main.
 
 ### Underskrivet av:
+
 @JohannaPri
 
 @fannyestrom
 
 @ReginaJM
-
-
