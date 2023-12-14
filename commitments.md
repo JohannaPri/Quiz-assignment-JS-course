@@ -4,8 +4,8 @@
 
 - Sara:
 
-  - Innanför komfortzon:
-  - Utanför komfortzon:
+  - Innanför komfortzon: Förstå logik, planering, struktur, grundläggande design och kodning
+  - Utanför komfortzon: Starta upp projekt tar alltid lite tid, syntax är svårt ibland även om logiken finns där. Konflikträdd.
 
 - Regina:
 
@@ -43,8 +43,8 @@
 - Ingen av gruppmedlemmarna har några tidigare kunskaper inom TypeScript/JavaScript.
 - Sara:
 
-  - Roligt:
-  - Mindre roligt:
+  - Roligt: Problemlösning (roligast när det funkar), jobba tillsammans på olika sätt kanske ffa diskutera med andra (men trivs också med att jobba själv, är introvert i grunden), design
+  - Mindre roligt: Allt tech såsom program, funktioner osv som helst bara ska funka (ink GitHub), när något större inte funkar och jag inte kan komma fram till varför (skapar stor stress!)
 
 - Regina:
 
@@ -110,3 +110,5 @@
 @fannyestrom
 
 @ReginaJM
+
+@SaraGdbg
