@@ -23,8 +23,8 @@
   - Utanför komfortzon: Skriva egen kod själv på en blank sida. Har svårt att se och veta hur och vart jag ska börja.
 
 - Ridwaan:
-  - Innanför komfortzon:
-  - Utanför komfortzon:
+  - Innanför komfortzon: Html, CSS och design
+  - Utanför komfortzon: JavaScript
 
 #### Communication
 
@@ -65,8 +65,8 @@
 
 - Ridwaan:
 
-  - Roligt:
-  - Mindre roligt:
+  - Roligt: Mycket design och att förstå koden tycker jag är roligt.
+  - Mindre roligt: När jag inte förstår koden alls
 
 - EsLintinställningar: Vi använder grundinställningarna i projektet
 - Prettierinställningar: Vi använder grundinställningarna i projektet
@@ -114,3 +114,5 @@
 @ReginaJM
 
 @SaraGdbg
+
+@RidwaanM
