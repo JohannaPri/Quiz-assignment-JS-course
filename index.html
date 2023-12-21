@@ -12,7 +12,6 @@
     <meta name="description" content="Welcome to The Lemons quiz, here can you play the most amazing movie music quiz, you will learn and have fun at the same time!"> 
     <meta name="keywords" content="amazing, quiz, experience, fun, movie, film, music, learn"> 
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
@@ -37,6 +36,8 @@
   </head>
 
   <body>
+    
+    <!----------------------FIRST PAGE---------------------->
    
       <div class="start-page">
         <div class="text-container-start">
@@ -55,6 +56,39 @@
         <button class="start-quiz">Start quiz</button>
 
       </div>
+    
+
+    <!----------------------GAME PAGE---------------------->
+    
+    <div class="game-page">
+
+      <span class="time-count"></span>
+      <span class="quiz-progress"></span>
+
+      <div class="question-container">
+        <span class="question"></span>
+        <div class="alternatives">
+          <span class="alternative1"></span>
+          <span class="alternative2"></span>
+          <span class="alternative3"></span>
+        </div>
+      </div>
+
+      <button class="next-question-btn">Next</button>
+
+    </div>
+    
+    <!----------------------LAST PAGE---------------------->
+
+    <div class="last-page">
+      <div class="quiz-summary">
+          <h3 class="results-heading">Your results!</h3>
+          <span class="results-text">Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.</span>
+      </div>
+
+      <button class="try-again-button">Try again</button>
+    </div>
+
     
     <script type="module" src="/src/main.ts"></script>
   </body>
