@@ -1,5 +1,5 @@
 import './scss/style.scss'; // Importera huvud-SCSS-filen
-import typescriptLogo from './assets/images/typescript.svg'; // Exempel på hur ni importerar bilder
+import typescriptLogo from './assets/icons/typescript.svg'; // Exempel på hur ni importerar bilder
 import { sortArrayByText } from './helpers'; // Exempel på hur ni importerar en funktion från en annan fil
 
 /**
