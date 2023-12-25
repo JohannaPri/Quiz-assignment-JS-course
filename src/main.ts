@@ -1,3 +1,12 @@
+/**
+ * 
+ * 
+ * Jennis exempel-kod:
+ * (Citronernas kod längre ned)
+ * 
+ * 
+ */
+
 import './scss/style.scss'; // Importera huvud-SCSS-filen
 import typescriptLogo from './assets/icons/typescript.svg'; // Exempel på hur ni importerar bilder
 import { sortArrayByText } from './helpers'; // Exempel på hur ni importerar en funktion från en annan fil
@@ -52,3 +61,93 @@ if (container !== null) { // Om HTML-elementet finns
 
 
 
+
+
+
+
+
+
+/**
+ * 
+ * 
+ * Citronernas kod:
+ * 
+ * 
+ */
+
+// Importerar array med quiz-frågor.
+import {musicQuiz} from "./Quiz-array.ts";
+
+
+// Funktion som genererar unika random siffror. 
+function generateUniqueRandomNumbers(count: number, range: number): number[] {
+  if (count > range) {
+      throw new Error("Count should not exceed the range for unique numbers");
+  }
+
+  const randomNumbers: number[] = [];
+
+  while (randomNumbers.length < count) {
+      const randomNumber = Math.floor(Math.random() * range);
+
+      // Kollar så att siffran inte redan finns i arrayen.
+      if (!randomNumbers.includes(randomNumber)) {
+          randomNumbers.push(randomNumber);
+      }
+  }
+
+  return randomNumbers;
+}
+
+// Skapar en array-variabel med 10 random siffror mellan 0-39.
+const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
+
+
+
+
+// Skapar variabler för html-elementen.
+const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
+const gamePage: HTMLDivElement | null = document.querySelector("#game-page");
+let question: HTMLSpanElement | null = document.querySelector("#question");
+const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
+
+// Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
+// Visar även första frågan.
+function showGamePage(): void {
+  if (gamePage !== null){
+    gamePage.classList.remove("hidden");
+  } 
+  if (question !== null){
+    question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
+  } 
+}
+
+if (startBtn !== null) {
+  startBtn.addEventListener("click", showGamePage);
+}
+
+
+
+
+
+// Initialize question index
+let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
+
+// Function to handle button click and display the next question.
+function showNextQuestion() {
+
+  // Check if there are more questions to display.
+  if (questionIndex < randomNumbersArray.length) {
+      // Display the next question.
+      if (question !== null) {
+        question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
+      }
+
+      // Move to the next question for the next button click.
+      questionIndex++;
+  } 
+}
+
+if (nextQuestionBtn !== null) {
+  nextQuestionBtn.addEventListener("click", showNextQuestion);
+}

@@ -1,6 +1,6 @@
 //  Create a interface for questions and answer options
 
-interface QuizQuestion  {
+interface IQuizQuestion  {
     question: string;
     options: string[];
     correctAnswerIndex: number;
@@ -8,7 +8,7 @@ interface QuizQuestion  {
 
 //  An Array with the musicquiz-questions
 
-const musicQuiz: QuizQuestion[] = [
+export const musicQuiz: IQuizQuestion[] = [
   
   {
     question: 'Who composed the music for "Jurassic Park"?',

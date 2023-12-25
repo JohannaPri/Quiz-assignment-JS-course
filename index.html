@@ -53,19 +53,19 @@
           to complete the quiz, will be presented at the end. 
           <span class="get-started">Let's get started!</span></p>
         </div>
-        <button class="start-quiz">Start quiz</button>
+        <button class="start-quiz-btn" id="start-quiz-btn">Start quiz</button>
 
       </div>
     
     <!----------------------GAME PAGE---------------------->
     
-    <div class="game-page">
+    <div class="game-page hidden" id="game-page">
 
       <span class="time-count"></span>
       <span class="quiz-progress"></span>
 
       <div class="question-container">
-        <span class="question"></span>
+        <span class="question" id="question"></span>
         <div class="alternatives">
           <span class="alternative1"></span>
           <span class="alternative2"></span>
@@ -73,19 +73,19 @@
         </div>
       </div>
 
-      <button class="next-question-btn">Next</button>
+      <button class="next-question-btn" id="next-question-btn">Next</button>
 
     </div>
     
     <!----------------------LAST PAGE---------------------->
 
-    <div class="last-page">
+    <div class="last-page hidden">
       <div class="quiz-summary">
           <h3 class="results-heading">Your results!</h3>
           <span class="results-text">Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.</span>
       </div>
 
-      <button class="try-again-button">Try again</button>
+      <button class="try-again-btn">Try again</button>
     </div>
 
     
