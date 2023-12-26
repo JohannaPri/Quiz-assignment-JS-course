@@ -110,6 +110,9 @@ const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-b
 const gamePage: HTMLDivElement | null = document.querySelector("#game-page");
 let question: HTMLSpanElement | null = document.querySelector("#question");
 const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
+let alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
+let alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
+let alternative3Btn: HTMLButtonElement | null = document.querySelector('#alternative3-btn');
 
 // Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
 // Visar även första frågan.
@@ -117,8 +120,20 @@ function showGamePage(): void {
   if (gamePage !== null){
     gamePage.classList.remove("hidden");
   } 
+  // Print question to page.
   if (question !== null){
     question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
+  } 
+
+  // Print alternatives for buttons to page.
+  if (alternative1Btn !== null){
+    alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[0]}`;
+  } 
+  if (alternative1Btn !== null){
+    alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[1]}`;
+  }
+  if (alternative1Btn !== null){
+    alternative3Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[2]}`;
   } 
 }
 
@@ -142,6 +157,17 @@ function showNextQuestion() {
       if (question !== null) {
         question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
       }
+
+      // Print alternatives for buttons to page.
+      if (alternative1Btn !== null){
+        alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
+      } 
+      if (alternative1Btn !== null){
+        alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[1]}`;
+      }
+      if (alternative1Btn !== null){
+        alternative3Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[2]}`;
+      } 
 
       // Move to the next question for the next button click.
       questionIndex++;
