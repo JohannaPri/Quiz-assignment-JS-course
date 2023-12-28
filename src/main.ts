@@ -7,9 +7,11 @@
  * 
  */
 
-import './scss/style.scss'; // Importera huvud-SCSS-filen
+/* import './scss/style.scss'; // Importera huvud-SCSS-filen
 import typescriptLogo from './assets/icons/typescript.svg'; // Exempel på hur ni importerar bilder
 import { sortArrayByText } from './helpers'; // Exempel på hur ni importerar en funktion från en annan fil
+
+ */
 
 /**
  * Här definierar vi en mall för hur vi vill att vår array ska se ut.
@@ -18,7 +20,7 @@ import { sortArrayByText } from './helpers'; // Exempel på hur ni importerar en
  * Prova t.ex. att lägga till en egenskap i interfacet, och notera hur arrayen nedanför
  * får rödmarkeringar där denna egenskap saknas.
  */
-interface IExampleArray {
+/* interface IExampleArray {
   name: string;
   age: number;
 }
@@ -58,6 +60,11 @@ if (container !== null) { // Om HTML-elementet finns
     </div>
   `;
 }
+ */
+
+
+
+
 
 
 
@@ -75,33 +82,11 @@ if (container !== null) { // Om HTML-elementet finns
  * 
  */
 
+
 // Importerar array med quiz-frågor.
-import {musicQuiz} from "./Quiz-array.ts";
-
-
-// Funktion som genererar unika random siffror. 
-function generateUniqueRandomNumbers(count: number, range: number): number[] {
-  if (count > range) {
-      throw new Error("Count should not exceed the range for unique numbers");
-  }
-
-  const randomNumbers: number[] = [];
-
-  while (randomNumbers.length < count) {
-      const randomNumber = Math.floor(Math.random() * range);
-
-      // Kollar så att siffran inte redan finns i arrayen.
-      if (!randomNumbers.includes(randomNumber)) {
-          randomNumbers.push(randomNumber);
-      }
-  }
-
-  return randomNumbers;
-}
-
-// Skapar en array-variabel med 10 random siffror mellan 0-39.
-const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
-
+import {musicQuiz} from './Quiz-array.ts';
+import { generateUniqueRandomNumbers } from './helpers.ts'; 
+import { showGamePage } from './helpers.ts'; 
 
 
 
@@ -114,34 +99,16 @@ let alternative1Btn: HTMLButtonElement | null = document.querySelector('#alterna
 let alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
 let alternative3Btn: HTMLButtonElement | null = document.querySelector('#alternative3-btn');
 
-// Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
-// Visar även första frågan.
-function showGamePage(): void {
-  if (gamePage !== null){
-    gamePage.classList.remove("hidden");
-  } 
-  // Print question to page.
-  if (question !== null){
-    question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
-  } 
 
-  // Print alternatives for buttons to page.
-  if (alternative1Btn !== null){
-    alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[0]}`;
-  } 
-  if (alternative1Btn !== null){
-    alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[1]}`;
-  }
-  if (alternative1Btn !== null){
-    alternative3Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[2]}`;
-  } 
-}
+
+// Skapar en array-variabel med 10 random siffror mellan 0-39.
+const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
+console.log(randomNumbersArray);
+
 
 if (startBtn !== null) {
   startBtn.addEventListener("click", showGamePage);
 }
-
-
 
 
 
@@ -162,10 +129,10 @@ function showNextQuestion() {
       if (alternative1Btn !== null){
         alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
       } 
-      if (alternative1Btn !== null){
+      if (alternative2Btn !== null){
         alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[1]}`;
       }
-      if (alternative1Btn !== null){
+      if (alternative3Btn !== null){
         alternative3Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[2]}`;
       } 
 
