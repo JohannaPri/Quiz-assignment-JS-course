@@ -83,10 +83,14 @@ if (container !== null) { // Om HTML-elementet finns
  */
 
 
+// Importerar css.
+import './scss/style.scss';
 // Importerar array med quiz-frågor.
-import {musicQuiz} from './Quiz-array.ts';
+import { musicQuiz } from './quiz-array.ts';
+
+/* // Importerar funktioner.
 import { generateUniqueRandomNumbers } from './helpers.ts'; 
-import { showGamePage } from './helpers.ts'; 
+import { showGamePage } from './helpers.ts';  */
 
 
 
@@ -101,9 +105,61 @@ let alternative3Btn: HTMLButtonElement | null = document.querySelector('#alterna
 
 
 
+// Funktion som genererar unika random siffror. 
+function generateUniqueRandomNumbers(count: number, range: number): number[] {
+  /* if (count > range) {
+      throw new Error("Count should not exceed the range for unique numbers");
+  } */
+
+  const randomNumbers: number[] = [];
+
+  while (randomNumbers.length < count) {
+      const randomNumber = Math.floor(Math.random() * range);
+
+      // Kollar så att siffran inte redan finns i arrayen.
+      if (!randomNumbers.includes(randomNumber)) {
+          randomNumbers.push(randomNumber);
+      }
+  }
+
+  return randomNumbers;
+}
+
+
+
 // Skapar en array-variabel med 10 random siffror mellan 0-39.
 const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
+
+
+
+
+
+// Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
+// Visar även första frågan.
+function showGamePage(): void {
+  if (gamePage !== null){
+    gamePage.classList.remove("hidden");
+  } 
+  // Print question to page.
+  if (question !== null){
+    question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
+  } 
+
+  // Print alternatives for buttons to page.
+  if (alternative1Btn  !== null){
+    alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[0]}`;
+  } 
+  if (alternative2Btn !== null){
+    alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[1]}`;
+  }
+  if (alternative3Btn !== null){
+    alternative3Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[2]}`;
+  } 
+}
+
+
+
 
 
 if (startBtn !== null) {
