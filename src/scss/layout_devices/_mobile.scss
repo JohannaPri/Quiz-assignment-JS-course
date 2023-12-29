@@ -60,5 +60,25 @@ button {
     height: 45px;
 }
 
+.alternative-btn{
+    background-color: white;
+    
+}
+.chosen{
+    border: solid black 5px;
+    background-color: lightgrey; 
+}
+.notChosen{
+    background-color: white;
+}
+
+
+.correct{
+    background-color: green;
+}
+.wrong{
+    background-color: red;
+}
+
 
 /* LAST PAGE */
