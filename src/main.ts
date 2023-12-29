@@ -95,6 +95,7 @@ import { showGamePage } from './helpers.ts';  */
 
 
 // Skapar variabler för html-elementen.
+const startPage: HTMLDivElement | null = document.querySelector("#start-page");
 const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
 const gamePage: HTMLDivElement | null = document.querySelector("#game-page");
 let question: HTMLSpanElement | null = document.querySelector("#question");
@@ -138,6 +139,10 @@ console.log(randomNumbersArray);
 // Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
 // Visar även första frågan.
 function showGamePage(): void {
+  if (startPage !== null){
+    startPage.classList.add("hidden");
+  } 
+
   if (gamePage !== null){
     gamePage.classList.remove("hidden");
   } 
