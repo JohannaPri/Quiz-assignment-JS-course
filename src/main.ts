@@ -94,6 +94,11 @@ let alternative1Btn: HTMLButtonElement | null =
 let alternative2Btn: HTMLButtonElement | null =
   document.querySelector("#alternative2-btn");
 
+
+
+
+
+
 /**
  *
  *
@@ -127,6 +132,11 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
 // Skapar en array-variabel med 10 random siffror mellan 0-39.
 const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
+
+
+
+
+
 
 /**
  *
@@ -187,50 +197,51 @@ if (startBtn !== null) {
 
 // Add event listeners.
 if (alternative0Btn !== null) {
-  alternative0Btn.addEventListener("click", chosenAnswer);
+  alternative0Btn.addEventListener("click", () => handleButtonClick(alternative0Btn));
 }
 if (alternative1Btn !== null) {
-  alternative1Btn.addEventListener("click", chosenAnswer);
+  alternative1Btn.addEventListener("click", () => handleButtonClick(alternative1Btn));
 }
 if (alternative2Btn !== null) {
-  alternative2Btn.addEventListener("click", chosenAnswer);
+  alternative2Btn.addEventListener("click", () => handleButtonClick(alternative2Btn));
 }
+
+
+let chosenAlternative: any = "";
+
+function handleButtonClick(clickedButton: HTMLButtonElement) {
+  alternative0Btn.style.backgroundColor = 'white';
+  alternative1Btn.style.backgroundColor = 'white';
+  alternative2Btn.style.backgroundColor = 'white';
+
+  clickedButton.style.backgroundColor = 'gray';
+  chosenAlternative = clickedButton.id;
+}
+
+console.log(chosenAlternative);
+
+
+
+/**
+ *
+ *
+ *
+ * Next question-button
+ *
+ *
+ *
+ */
+
+// Initialize question index
+let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
 
 // Användaren klickar på ett svarsalternativ
 // Registrera vilken knapp som klickades på. 0, 1 eller 2.
 // Jämför valt alternativ med musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex
 
-function chosenAnswer(e): void {
-  /*   e.target.classList.add("chosen");
-  e.target.classList.remove("notChosen");
-  console.log(e.target); */
-
-  const buttons: String[] = [
-    "alternative0Btn",
-    "alternative1Btn",
-    "alternative2Btn",
-  ];
-  console.log(buttons);
-  console.log(e.target.id);
-
-  buttons.forEach((button) => {
-    if (button != String(e.target.id)) {
-      button.classList.add("notChosen");
-      button.classList.remove("chosen");
-
-      console.log("if körs");
-    } else {
-      button.classList.add("chosen");
-      button.classList.remove("notChosen");
-
-      console.log("else körs");
-    }
-  });
-}
-
-/* // Function that compare the user's chosen alternative to the correct alternative. 
+// Function that compare the user's chosen alternative to the correct alternative. 
 // Till next-knappen
-function compareAnswer(e): void {
+function compareAnswer(e: any): void {
   let index = e.target.id.replace("alternative", "");
   index = Number(index.replace("-btn", ""));
 
@@ -243,8 +254,14 @@ function compareAnswer(e): void {
     } else {
     e.target.classList.add("wrong");
     return;
-  
-} */
+    } 
+}
+
+if (nextQuestionBtn !== null) {
+  nextQuestionBtn.addEventListener("click", compareAnswer);
+}
+
+
 
 /**
  *
@@ -256,11 +273,14 @@ function compareAnswer(e): void {
  *
  */
 
-// Initialize question index
-let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
-
 // Function to handle button click and display the next question.
 function showNextQuestion() {
+
+  // Reset all alternative buttons to white.
+  alternative0Btn.style.backgroundColor = 'white';
+  alternative1Btn.style.backgroundColor = 'white';
+  alternative2Btn.style.backgroundColor = 'white';
+
   // Check if there are more questions to display.
   if (questionIndex < randomNumbersArray.length) {
     // Display the next question.
@@ -290,8 +310,12 @@ function showNextQuestion() {
     // Move to the next question for the next button click.
     questionIndex++;
   }
+
+  
+
 }
 
 if (nextQuestionBtn !== null) {
   nextQuestionBtn.addEventListener("click", showNextQuestion);
 }
+
