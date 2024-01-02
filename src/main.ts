@@ -211,25 +211,55 @@ if (alternative2Btn !== null) {
 
 
 
-let chosenAlternative: HTMLButtonElement;
+let chosenAlternative: HTMLButtonElement | null = null;
+
+// ... (previous code)
+
+let allowClicks: boolean = true;
 
 function handleButtonClick(clickedButton: HTMLButtonElement): void {
-/*   alternative0Btn.style.backgroundColor = 'white';
-  alternative1Btn.style.backgroundColor = 'white';
-  alternative2Btn.style.backgroundColor = 'white';
+  if (!allowClicks) {
+    return; // Clicks are disabled
+  }
 
-  clickedButton.style.backgroundColor = 'gray';  */
-  
+  if (chosenAlternative !== null) {
+    return; // Only allow one click per question
+  }
+
   chosenAlternative = clickedButton;
-  
+
+  const correctAnswerIndex = musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
+
+  // Add 'wrong' class to the chosen alternative if it's incorrect
+  if (chosenAlternative.id !== `alternative${correctAnswerIndex}-btn`) {
+    chosenAlternative.classList.add('wrong');
+  } else {
+    // Add 'correct' class to the correct alternative
+    chosenAlternative.classList.add('correct');
+  }
+
+  // Disable other alternative buttons
+  disableAlternativeButtons();
 }
 
 
 
 
+// ... (previous code)
 
+function disableAlternativeButtons(): void {
+  if (alternative0Btn !== null) {
+    alternative0Btn.disabled = true;
+  }
+  if (alternative1Btn !== null) {
+    alternative1Btn.disabled = true;
+  }
+  if (alternative2Btn !== null) {
+    alternative2Btn.disabled = true;
+  }
+}
 
-
+// ... (previous code)
 
 
 
@@ -250,195 +280,93 @@ let questionIndex: number = 0; // 1 eftersom vi redan använde fråga 0 när anv
 // Registrera vilken knapp som klickades på. 0, 1 eller 2.
 // Jämför valt alternativ med musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex
 
-// Function that compare the user's chosen alternative to the correct alternative. 
-// Till next-knappen
-/* function compareAnswer(e: any): void {
-  let index = e.target.id.replace("alternative", "");
-  index = Number(index.replace("-btn", ""));
 
-  console.log(chosenAlternative);
-
-  if (index === musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex) {
-    console.log("grattis");
-
-    e.target.classList.add("correct");
-    console.log(e.target);
-    return;
-    } else {
-    e.target.classList.add("wrong");
-    return;
-    } 
-} */
-
-
-
-
-
-
-/**
- *
- *
- *
- * Show next question
- *
- *
- *
- */
-
-/* // Function to handle button click and display the next question.
 function showNextQuestion(): void {
-
-  // Reset all alternative buttons to white.
+  // Reset all alternative buttons to default state.
   if (alternative0Btn !== null) {
-    alternative0Btn.style.backgroundColor = 'white';
+    alternative0Btn.classList.remove('correct', 'wrong');
+    alternative0Btn.disabled = false;
   }
   if (alternative1Btn !== null) {
-    alternative1Btn.style.backgroundColor = 'white';
+    alternative1Btn.classList.remove('correct', 'wrong');
+    alternative1Btn.disabled = false;
   }
   if (alternative2Btn !== null) {
-    alternative2Btn.style.backgroundColor = 'white';
-  } 
-  
-  console.log(chosenAlternative);
+    alternative2Btn.classList.remove('correct', 'wrong');
+    alternative2Btn.disabled = false;
+  }
+
+  // Reset chosenAlternative
+  chosenAlternative = null;
+
+  // Enable clicks for the next question
+  allowClicks = true;
 
   // Check if there are more questions to display.
-  if (questionIndex < randomNumbersArray.length) {
+  if (questionIndex < randomNumbersArray.length - 1) {
     // Display the next question.
     if (question !== null) {
-      question.innerText = `${
-        musicQuiz[randomNumbersArray[questionIndex]].question
-      }`;
-    }
-
-    // Print alternatives for buttons to page.
-    if (alternative0Btn !== null) {
-      alternative0Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[0]
-      }`;
-    }
-    if (alternative1Btn !== null) {
-      alternative1Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[1]
-      }`;
-    }
-    if (alternative2Btn !== null) {
-      alternative2Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[2]
-      }`;
-    }
-
-    // Move to the next question for the next button click.
-    questionIndex = questionIndex += 1 ;
-  }
-}
-
-if (nextQuestionBtn !== null) {
-  nextQuestionBtn.addEventListener('click', showNextQuestion);
-}  */ 
- 
-
-
-
-
-/* // Function that compare the user's chosen alternative to the correct alternative. 
-// Till next-knappen
-function compareAnswer(): void {
-  let index = chosenAlternative.id.replace('alternative', '');
-  index = index.replace('-btn', '');
-  
-  console.log(index);
-  console.log(chosenAlternative);
-  console.log(chosenAlternative.id);
-
-  if (index === String(musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex)) {
-    console.log('grattis');
-
-    chosenAlternative.classList.add('correct');
-    console.log(chosenAlternative);
-    
-  } else {
-    chosenAlternative.classList.add('wrong');
-    
-  } 
-  
-} */
-
-
-
-
-
-
-function showNextQuestion(): void {
-  // Reset all alternative buttons to white.
-  console.log('hej showNextQuestion');
-
-  console.log(chosenAlternative);
-
-  // Check if there are more questions to display.
-  if (questionIndex < randomNumbersArray.length) {
-    // Display the next question.
-    if (question !== null) {  
-      question.innerText = `${
-        musicQuiz[randomNumbersArray[questionIndex]].question
-      }`;
+      question.innerText = `${musicQuiz[randomNumbersArray[questionIndex + 1]].question}`;
     }
 
     // Print alternatives for buttons to the page.
     if (alternative0Btn !== null) {
-      alternative0Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[0]
-      }`;
+      alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[0]}`;
     }
     if (alternative1Btn !== null) {
-      alternative1Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[1]
-      }`;
+      alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[1]}`;
     }
     if (alternative2Btn !== null) {
-      alternative2Btn.innerHTML = `${
-        musicQuiz[randomNumbersArray[questionIndex]].options[2]
-      }`;
+      alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[2]}`;
     }
-
-    if (alternative0Btn !== null) {
-      alternative0Btn.style.backgroundColor = 'white';
-    }
-    if (alternative1Btn !== null) {
-      alternative1Btn.style.backgroundColor = 'white';
-    }
-    if (alternative2Btn !== null) {
-      alternative2Btn.style.backgroundColor = 'white';
-    }  
 
     // Move to the next question for the next button click.
-    questionIndex = questionIndex += 1 ;
-  } 
+    questionIndex += 1;
+  } else {
+    // Handle the case when there are no more questions (quiz is finished).
+    // You can redirect to a results page or perform any other action.
+    console.log('Quiz finished!');
+  }
 }
 
+
+
+
+
+
+
+
+// ... (previous code)
 
 function compareAnswer(): void {
-  let index = chosenAlternative.id.replace('alternative', '');
-  index = index.replace('-btn', '');
-  
-  console.log(index);
-  console.log(chosenAlternative);
-  console.log(chosenAlternative.id);
+  if (chosenAlternative === null || !allowClicks) {
+    return; // no alternative selected or already processed
+  }
 
-  if (index === String(musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex)) {
-    console.log('grattis');
+  // Disable further clicks
+  allowClicks = false;
 
+  const correctAnswerIndex = musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
+
+  // Add 'correct' or 'wrong' class based on the correctness
+  if (chosenAlternative.id === `alternative${correctAnswerIndex}-btn`) {
     chosenAlternative.classList.add('correct');
-    console.log(chosenAlternative);
   } else {
     chosenAlternative.classList.add('wrong');
-  } 
+  }
 
-  // Introduce a delay of, for example, 1000 milliseconds (1 second)
-  setTimeout(() => {
-  // After the delay, show the next question
-    showNextQuestion();
-  }, 2000); 
+  // Disable other alternative buttons
+  disableAlternativeButtons();
+
+  // Show the next question
+  showNextQuestion();
 }
+
+
+if (nextQuestionBtn !== null) {
+  nextQuestionBtn.addEventListener('click', compareAnswer);
+}
+
 
 
 if (nextQuestionBtn !== null) {
