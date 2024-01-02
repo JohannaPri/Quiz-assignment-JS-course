@@ -1,10 +1,10 @@
 /**
- * 
- * 
+ *
+ *
  * Jennis exempel-kod:
  * (Citronernas kod längre ned)
- * 
- * 
+ *
+ *
  */
 
 /* import './scss/style.scss'; // Importera huvud-SCSS-filen
@@ -62,62 +62,49 @@ if (container !== null) { // Om HTML-elementet finns
 }
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
 /**
- * 
- * 
+ *
+ *
  * Citronernas kod:
- * 
- * 
+ *
+ *
  */
 
-
 // Importerar css.
-import './scss/style.scss';
+import "./scss/style.scss";
 // Importerar array med quiz-frågor.
-import { musicQuiz } from './quiz-array.ts';
+import { musicQuiz } from "./Quiz-array.ts";
 
 /* // Importerar funktioner.
 import { generateUniqueRandomNumbers } from './helpers.ts'; 
 import { showGamePage } from './helpers.ts';  */
 
-
-
 // Skapar variabler för html-elementen.
 const startPage: HTMLDivElement | null = document.querySelector("#start-page");
-const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
+const startBtn: HTMLButtonElement | null =
+  document.querySelector("#start-quiz-btn");
 const gamePage: HTMLDivElement | null = document.querySelector("#game-page");
 let question: HTMLSpanElement | null = document.querySelector("#question");
-const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
-let alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
-let alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
-let alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
-
-
-
+const nextQuestionBtn: HTMLButtonElement | null =
+  document.querySelector("#next-question-btn");
+let alternative0Btn: HTMLButtonElement | null =
+  document.querySelector("#alternative0-btn");
+let alternative1Btn: HTMLButtonElement | null =
+  document.querySelector("#alternative1-btn");
+let alternative2Btn: HTMLButtonElement | null =
+  document.querySelector("#alternative2-btn");
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Generate random numbers
- * 
- * 
- * 
+ *
+ *
+ *
  */
 
-// Funktion som genererar unika random siffror. 
+// Funktion som genererar unika random siffror.
 function generateUniqueRandomNumbers(count: number, range: number): number[] {
   /* if (count > range) {
       throw new Error("Count should not exceed the range for unique numbers");
@@ -126,12 +113,12 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
   const randomNumbers: number[] = [];
 
   while (randomNumbers.length < count) {
-      const randomNumber = Math.floor(Math.random() * range);
+    const randomNumber = Math.floor(Math.random() * range);
 
-      // Kollar så att siffran inte redan finns i arrayen.
-      if (!randomNumbers.includes(randomNumber)) {
-          randomNumbers.push(randomNumber);
-      }
+    // Kollar så att siffran inte redan finns i arrayen.
+    if (!randomNumbers.includes(randomNumber)) {
+      randomNumbers.push(randomNumber);
+    }
   }
 
   return randomNumbers;
@@ -141,60 +128,61 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
 const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
 
-
-
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Show game page
- * 
- * 
- * 
+ *
+ *
+ *
  */
 
 // Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
 // Visar även första frågan.
 function showGamePage(): void {
-  if (startPage !== null){
+  if (startPage !== null) {
     startPage.classList.add("hidden");
-  } 
+  }
 
-  if (gamePage !== null){
+  if (gamePage !== null) {
     gamePage.classList.remove("hidden");
-  } 
+  }
   // Print question to page.
-  if (question !== null){
+  if (question !== null) {
     question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
-  } 
+  }
 
   // Print alternatives for buttons to page.
-  if (alternative0Btn  !== null){
-    alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[0]}`;
-  } 
-  if (alternative1Btn !== null){
-    alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[1]}`;
+  if (alternative0Btn !== null) {
+    alternative0Btn.innerHTML = `${
+      musicQuiz[randomNumbersArray[0]].options[0]
+    }`;
   }
-  if (alternative2Btn !== null){
-    alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[0]].options[2]}`;
-  } 
+  if (alternative1Btn !== null) {
+    alternative1Btn.innerHTML = `${
+      musicQuiz[randomNumbersArray[0]].options[1]
+    }`;
+  }
+  if (alternative2Btn !== null) {
+    alternative2Btn.innerHTML = `${
+      musicQuiz[randomNumbersArray[0]].options[2]
+    }`;
+  }
 }
 
 if (startBtn !== null) {
   startBtn.addEventListener("click", showGamePage);
 }
 
-
-
-
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Alternative buttons
- * 
- * 
- * 
+ *
+ *
+ *
  */
 
 // Add event listeners.
@@ -213,35 +201,32 @@ if (alternative2Btn !== null) {
 // Jämför valt alternativ med musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex
 
 function chosenAnswer(e): void {
-/*   e.target.classList.add("chosen");
+  /*   e.target.classList.add("chosen");
   e.target.classList.remove("notChosen");
   console.log(e.target); */
 
-  const buttons: String[] = ["alternative0Btn", "alternative1Btn", "alternative2Btn"];
+  const buttons: String[] = [
+    "alternative0Btn",
+    "alternative1Btn",
+    "alternative2Btn",
+  ];
   console.log(buttons);
   console.log(e.target.id);
-  
 
-
-   buttons.forEach((button) => {
+  buttons.forEach((button) => {
     if (button != String(e.target.id)) {
       button.classList.add("notChosen");
       button.classList.remove("chosen");
 
       console.log("if körs");
-      
     } else {
       button.classList.add("chosen");
       button.classList.remove("notChosen");
 
       console.log("else körs");
     }
-  }); 
-
-
+  });
 }
-
-
 
 /* // Function that compare the user's chosen alternative to the correct alternative. 
 // Till next-knappen
@@ -261,19 +246,14 @@ function compareAnswer(e): void {
   
 } */
 
-
-
-
-
-
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Show next question
- * 
- * 
- * 
+ *
+ *
+ *
  */
 
 // Initialize question index
@@ -281,28 +261,35 @@ let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren
 
 // Function to handle button click and display the next question.
 function showNextQuestion() {
-
   // Check if there are more questions to display.
   if (questionIndex < randomNumbersArray.length) {
-      // Display the next question.
-      if (question !== null) {
-        question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
-      }
+    // Display the next question.
+    if (question !== null) {
+      question.innerText = `${
+        musicQuiz[randomNumbersArray[questionIndex]].question
+      }`;
+    }
 
-      // Print alternatives for buttons to page.
-      if (alternative0Btn !== null){
-        alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
-      } 
-      if (alternative1Btn !== null){
-        alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[1]}`;
-      }
-      if (alternative2Btn !== null){
-        alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[2]}`;
-      } 
+    // Print alternatives for buttons to page.
+    if (alternative0Btn !== null) {
+      alternative0Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[0]
+      }`;
+    }
+    if (alternative1Btn !== null) {
+      alternative1Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[1]
+      }`;
+    }
+    if (alternative2Btn !== null) {
+      alternative2Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[2]
+      }`;
+    }
 
-      // Move to the next question for the next button click.
-      questionIndex++;
-  } 
+    // Move to the next question for the next button click.
+    questionIndex++;
+  }
 }
 
 if (nextQuestionBtn !== null) {
