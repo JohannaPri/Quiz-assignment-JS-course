@@ -73,7 +73,7 @@ if (container !== null) { // Om HTML-elementet finns
 // Importerar css.
 import "./scss/style.scss";
 // Importerar array med quiz-frågor.
-import { musicQuiz } from "./Quiz-array.ts";
+import { musicQuiz } from "./quiz-array.ts";
 
 /* // Importerar funktioner.
 import { generateUniqueRandomNumbers } from './helpers.ts'; 
