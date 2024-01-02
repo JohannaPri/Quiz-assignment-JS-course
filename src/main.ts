@@ -71,28 +71,23 @@ if (container !== null) { // Om HTML-elementet finns
  */
 
 // Importerar css.
-import "./scss/style.scss";
+import './scss/style.scss';
 // Importerar array med quiz-frågor.
-import { musicQuiz } from "./quiz-array.ts";
+import { musicQuiz } from './quiz-array.ts';
 
 /* // Importerar funktioner.
 import { generateUniqueRandomNumbers } from './helpers.ts'; 
 import { showGamePage } from './helpers.ts';  */
 
 // Skapar variabler för html-elementen.
-const startPage: HTMLDivElement | null = document.querySelector("#start-page");
-const startBtn: HTMLButtonElement | null =
-  document.querySelector("#start-quiz-btn");
-const gamePage: HTMLDivElement | null = document.querySelector("#game-page");
-let question: HTMLSpanElement | null = document.querySelector("#question");
-const nextQuestionBtn: HTMLButtonElement | null =
-  document.querySelector("#next-question-btn");
-let alternative0Btn: HTMLButtonElement | null =
-  document.querySelector("#alternative0-btn");
-let alternative1Btn: HTMLButtonElement | null =
-  document.querySelector("#alternative1-btn");
-let alternative2Btn: HTMLButtonElement | null =
-  document.querySelector("#alternative2-btn");
+const startPage: HTMLDivElement | null = document.querySelector('#start-page');
+const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
+const gamePage: HTMLDivElement | null = document.querySelector('#game-page');
+const question: HTMLSpanElement | null = document.querySelector('#question');
+const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
+const alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
+const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
+const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
 
 
 
@@ -152,11 +147,11 @@ console.log(randomNumbersArray);
 // Visar även första frågan.
 function showGamePage(): void {
   if (startPage !== null) {
-    startPage.classList.add("hidden");
+    startPage.classList.add('hidden');
   }
 
   if (gamePage !== null) {
-    gamePage.classList.remove("hidden");
+    gamePage.classList.remove('hidden');
   }
   // Print question to page.
   if (question !== null) {
@@ -182,7 +177,7 @@ function showGamePage(): void {
 }
 
 if (startBtn !== null) {
-  startBtn.addEventListener("click", showGamePage);
+  startBtn.addEventListener('click', showGamePage);
 }
 
 /**
@@ -195,30 +190,46 @@ if (startBtn !== null) {
  *
  */
 
+
+
 // Add event listeners.
 if (alternative0Btn !== null) {
-  alternative0Btn.addEventListener("click", () => handleButtonClick(alternative0Btn));
+  alternative0Btn.addEventListener('click', () => {
+    handleButtonClick(alternative0Btn); 
+  });
 }
 if (alternative1Btn !== null) {
-  alternative1Btn.addEventListener("click", () => handleButtonClick(alternative1Btn));
+  alternative1Btn.addEventListener('click', () => { 
+    handleButtonClick(alternative1Btn);
+  });
 }
 if (alternative2Btn !== null) {
-  alternative2Btn.addEventListener("click", () => handleButtonClick(alternative2Btn));
+  alternative2Btn.addEventListener('click', () => {
+    handleButtonClick(alternative2Btn);
+  });
 }
 
 
-let chosenAlternative: any = "";
 
-function handleButtonClick(clickedButton: HTMLButtonElement) {
-  alternative0Btn.style.backgroundColor = 'white';
+let chosenAlternative: HTMLButtonElement;
+
+function handleButtonClick(clickedButton: HTMLButtonElement): void {
+/*   alternative0Btn.style.backgroundColor = 'white';
   alternative1Btn.style.backgroundColor = 'white';
   alternative2Btn.style.backgroundColor = 'white';
 
-  clickedButton.style.backgroundColor = 'gray';
-  chosenAlternative = clickedButton.id;
+  clickedButton.style.backgroundColor = 'gray';  */
+  
+  chosenAlternative = clickedButton;
+  
 }
 
-console.log(chosenAlternative);
+
+
+
+
+
+
 
 
 
@@ -233,7 +244,7 @@ console.log(chosenAlternative);
  */
 
 // Initialize question index
-let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
+let questionIndex: number = 0; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
 
 // Användaren klickar på ett svarsalternativ
 // Registrera vilken knapp som klickades på. 0, 1 eller 2.
@@ -241,9 +252,11 @@ let questionIndex = 1; // 1 eftersom vi redan använde fråga 0 när användaren
 
 // Function that compare the user's chosen alternative to the correct alternative. 
 // Till next-knappen
-function compareAnswer(e: any): void {
+/* function compareAnswer(e: any): void {
   let index = e.target.id.replace("alternative", "");
   index = Number(index.replace("-btn", ""));
+
+  console.log(chosenAlternative);
 
   if (index === musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex) {
     console.log("grattis");
@@ -255,11 +268,10 @@ function compareAnswer(e: any): void {
     e.target.classList.add("wrong");
     return;
     } 
-}
+} */
 
-if (nextQuestionBtn !== null) {
-  nextQuestionBtn.addEventListener("click", compareAnswer);
-}
+
+
 
 
 
@@ -273,13 +285,21 @@ if (nextQuestionBtn !== null) {
  *
  */
 
-// Function to handle button click and display the next question.
-function showNextQuestion() {
+/* // Function to handle button click and display the next question.
+function showNextQuestion(): void {
 
   // Reset all alternative buttons to white.
-  alternative0Btn.style.backgroundColor = 'white';
-  alternative1Btn.style.backgroundColor = 'white';
-  alternative2Btn.style.backgroundColor = 'white';
+  if (alternative0Btn !== null) {
+    alternative0Btn.style.backgroundColor = 'white';
+  }
+  if (alternative1Btn !== null) {
+    alternative1Btn.style.backgroundColor = 'white';
+  }
+  if (alternative2Btn !== null) {
+    alternative2Btn.style.backgroundColor = 'white';
+  } 
+  
+  console.log(chosenAlternative);
 
   // Check if there are more questions to display.
   if (questionIndex < randomNumbersArray.length) {
@@ -308,14 +328,124 @@ function showNextQuestion() {
     }
 
     // Move to the next question for the next button click.
-    questionIndex++;
+    questionIndex = questionIndex += 1 ;
   }
-
-  
-
 }
 
 if (nextQuestionBtn !== null) {
-  nextQuestionBtn.addEventListener("click", showNextQuestion);
+  nextQuestionBtn.addEventListener('click', showNextQuestion);
+}  */ 
+ 
+
+
+
+
+/* // Function that compare the user's chosen alternative to the correct alternative. 
+// Till next-knappen
+function compareAnswer(): void {
+  let index = chosenAlternative.id.replace('alternative', '');
+  index = index.replace('-btn', '');
+  
+  console.log(index);
+  console.log(chosenAlternative);
+  console.log(chosenAlternative.id);
+
+  if (index === String(musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex)) {
+    console.log('grattis');
+
+    chosenAlternative.classList.add('correct');
+    console.log(chosenAlternative);
+    
+  } else {
+    chosenAlternative.classList.add('wrong');
+    
+  } 
+  
+} */
+
+
+
+
+
+
+function showNextQuestion(): void {
+  // Reset all alternative buttons to white.
+  console.log('hej showNextQuestion');
+
+  console.log(chosenAlternative);
+
+  // Check if there are more questions to display.
+  if (questionIndex < randomNumbersArray.length) {
+    // Display the next question.
+    if (question !== null) {  
+      question.innerText = `${
+        musicQuiz[randomNumbersArray[questionIndex]].question
+      }`;
+    }
+
+    // Print alternatives for buttons to the page.
+    if (alternative0Btn !== null) {
+      alternative0Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[0]
+      }`;
+    }
+    if (alternative1Btn !== null) {
+      alternative1Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[1]
+      }`;
+    }
+    if (alternative2Btn !== null) {
+      alternative2Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[2]
+      }`;
+    }
+
+    if (alternative0Btn !== null) {
+      alternative0Btn.style.backgroundColor = 'white';
+    }
+    if (alternative1Btn !== null) {
+      alternative1Btn.style.backgroundColor = 'white';
+    }
+    if (alternative2Btn !== null) {
+      alternative2Btn.style.backgroundColor = 'white';
+    }  
+
+    // Move to the next question for the next button click.
+    questionIndex = questionIndex += 1 ;
+  } 
 }
+
+
+function compareAnswer(): void {
+  let index = chosenAlternative.id.replace('alternative', '');
+  index = index.replace('-btn', '');
+  
+  console.log(index);
+  console.log(chosenAlternative);
+  console.log(chosenAlternative.id);
+
+  if (index === String(musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex)) {
+    console.log('grattis');
+
+    chosenAlternative.classList.add('correct');
+    console.log(chosenAlternative);
+  } else {
+    chosenAlternative.classList.add('wrong');
+  } 
+
+  // Introduce a delay of, for example, 1000 milliseconds (1 second)
+  setTimeout(() => {
+  // After the delay, show the next question
+    showNextQuestion();
+  }, 2000); 
+}
+
+
+if (nextQuestionBtn !== null) {
+  nextQuestionBtn.addEventListener('click', compareAnswer);
+}
+
+
+
+
 
