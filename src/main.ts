@@ -62,6 +62,11 @@ if (container !== null) { // Om HTML-elementet finns
 }
  */
 
+
+
+
+
+
 /**
  *
  *
@@ -70,16 +75,16 @@ if (container !== null) { // Om HTML-elementet finns
  *
  */
 
-// Importerar css.
+// Imports CSS.
 import './scss/style.scss';
-// Importerar array med quiz-frågor.
+// Imports array with quiz.
 import { musicQuiz } from './questions.ts';
 
-/* // Importerar funktioner.
+/* // Imports functions.
 import { generateUniqueRandomNumbers } from './helpers.ts'; 
 import { showGamePage } from './helpers.ts';  */
 
-// Skapar variabler för html-elementen.
+// Creates variables for the HTML elements.
 const startPage: HTMLDivElement | null = document.querySelector('#start-page');
 const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
 const gamePage: HTMLDivElement | null = document.querySelector('#game-page');
@@ -103,8 +108,7 @@ const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alter
  *
  *
  */
-
-// Funktion som genererar unika random siffror.
+// Function generating unique numbers.
 function generateUniqueRandomNumbers(count: number, range: number): number[] {
   /* if (count > range) {
       throw new Error("Count should not exceed the range for unique numbers");
@@ -115,7 +119,7 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
   while (randomNumbers.length < count) {
     const randomNumber = Math.floor(Math.random() * range);
 
-    // Kollar så att siffran inte redan finns i arrayen.
+    // Checks if the number is already in the array.
     if (!randomNumbers.includes(randomNumber)) {
       randomNumbers.push(randomNumber);
     }
@@ -124,7 +128,7 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
   return randomNumbers;
 }
 
-// Skapar en array-variabel med 10 random siffror mellan 0-39.
+// Creates an array variable with numbers between 0-39.
 const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
 
@@ -143,8 +147,8 @@ console.log(randomNumbersArray);
  *
  */
 
-// Funktion som visar game-page (tar bort class=hidden) när användaren klickar på start-quiz knappen.
-// Visar även första frågan.
+// Function showing the game page (deletes class=hidden) when the user clicks on the 'Start quiz'-button.
+// Also shows the first question.
 function showGamePage(): void {
   if (startPage !== null) {
     startPage.classList.add('hidden');
@@ -180,6 +184,11 @@ if (startBtn !== null) {
   startBtn.addEventListener('click', showGamePage);
 }
 
+
+
+
+
+
 /**
  *
  *
@@ -189,9 +198,6 @@ if (startBtn !== null) {
  *
  *
  */
-
-
-
 // Add event listeners.
 if (alternative0Btn !== null) {
   alternative0Btn.addEventListener('click', () => {
@@ -209,14 +215,14 @@ if (alternative2Btn !== null) {
   });
 }
 
-
-
+// Declare a variable to keep track of the chosen alternative
 let chosenAlternative: HTMLButtonElement | null = null;
 
-// ... (previous code)
-
+// Declare a variable to control whether clicks are allowed
 let allowClicks: boolean = true;
 
+
+// Function controlling clicks on alternative buttons. 
 function handleButtonClick(clickedButton: HTMLButtonElement): void {
   if (!allowClicks) {
     return; // Clicks are disabled
@@ -245,8 +251,9 @@ function handleButtonClick(clickedButton: HTMLButtonElement): void {
 
 
 
-// ... (previous code)
 
+
+// Function that disables alternative buttons after selecting an answer.
 function disableAlternativeButtons(): void {
   if (alternative0Btn !== null) {
     alternative0Btn.disabled = true;
@@ -259,7 +266,8 @@ function disableAlternativeButtons(): void {
   }
 }
 
-// ... (previous code)
+
+
 
 
 
@@ -274,15 +282,11 @@ function disableAlternativeButtons(): void {
  */
 
 // Initialize question index
-let questionIndex: number = 0; // 1 eftersom vi redan använde fråga 0 när användaren klickar på start quiz.
+let questionIndex: number = 0; // 1 since we use question 0 when the user clicks on the 'Start quiz'-button.
 
-// Användaren klickar på ett svarsalternativ
-// Registrera vilken knapp som klickades på. 0, 1 eller 2.
-// Jämför valt alternativ med musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex
-
-
+// Function displaying the next question.
 function showNextQuestion(): void {
-  // Reset all alternative buttons to default state.
+  // Reset all alternative buttons to default state on the next question.
   if (alternative0Btn !== null) {
     alternative0Btn.classList.remove('correct', 'wrong');
     alternative0Btn.disabled = false;
@@ -324,20 +328,12 @@ function showNextQuestion(): void {
     questionIndex += 1;
   } else {
     // Handle the case when there are no more questions (quiz is finished).
-    // You can redirect to a results page or perform any other action.
+    // (redirect to results page)
     console.log('Quiz finished!');
   }
 }
 
-
-
-
-
-
-
-
-// ... (previous code)
-
+// Function controlling the selected answer. 
 function compareAnswer(): void {
   if (chosenAlternative === null || !allowClicks) {
     return; // no alternative selected or already processed
@@ -361,12 +357,6 @@ function compareAnswer(): void {
   // Show the next question
   showNextQuestion();
 }
-
-
-if (nextQuestionBtn !== null) {
-  nextQuestionBtn.addEventListener('click', compareAnswer);
-}
-
 
 
 if (nextQuestionBtn !== null) {
