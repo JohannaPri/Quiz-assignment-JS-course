@@ -88,11 +88,13 @@ import { showGamePage } from './helpers.ts';  */
 const startPage: HTMLDivElement | null = document.querySelector('#start-page');
 const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
 const gamePage: HTMLDivElement | null = document.querySelector('#game-page');
+const lastPage: HTMLDivElement | null = document.querySelector('#last-page');
 const question: HTMLSpanElement | null = document.querySelector('#question');
 const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
 const alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
 const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
 const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
+const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
 
 
 
@@ -293,6 +295,7 @@ let questionIndex: number = 0; // 1 since we use question 0 when the user clicks
 
 // Function displaying the next question.
 function showNextQuestion(): void {
+
   // Increment the questionIndex before updating the display
   questionIndex += 1;
 
@@ -324,12 +327,13 @@ function showNextQuestion(): void {
     // Enable clicks for the next question
     allowClicks = true;
 
-    // Display the next question.
+  
+  // Display the next question.
     if (question !== null) {
       question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
-    }
-
-    // Print alternatives for buttons to the page.
+     } 
+  
+  // Print alternatives for buttons to the page.
     if (alternative0Btn !== null) {
       alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
     }
@@ -343,9 +347,36 @@ function showNextQuestion(): void {
     // Handle the case when there are no more questions (quiz is finished).
     // (redirect to results page)
     console.log('Quiz finished!');
-  }
+    
+    if (nextQuestionBtn !== null) {
+      nextQuestionBtn.innerHTML = 'Finish';
+    }
+    
+    if (question !== null) {
+      question.innerText = 'You have answered all questions! Click Finish to see your result!';
+    }
+    
+     if (alternative0Btn !== null) {
+      alternative0Btn.classList.add('hidden');
+    }
+    if (alternative1Btn !== null) {
+      alternative1Btn.classList.add('hidden');
+    }
+    if (alternative2Btn !== null) {
+      alternative2Btn.classList.add('hidden');
+    }
+    
+     if (nextQuestionBtn !== null) {
+      nextQuestionBtn.addEventListener('click', () => {
+        if (lastPage !== null) {
+          lastPage.classList.remove('hidden');
+        }
+        if (gamePage !== null) {
+          gamePage.classList.add('hidden');
+        }
+      });
+    }
 }
-
 
 
 // Function controlling the selected answer. 
@@ -377,7 +408,6 @@ function compareAnswer(): void {
 if (nextQuestionBtn !== null) {
   nextQuestionBtn.addEventListener('click', compareAnswer);
 }
-
 
 
 
