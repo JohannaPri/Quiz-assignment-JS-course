@@ -94,7 +94,7 @@ const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-
 const alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
 const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
 const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
-const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
+// const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
 
 
 
@@ -328,12 +328,12 @@ function showNextQuestion(): void {
     allowClicks = true;
 
   
-  // Display the next question.
+    // Display the next question.
     if (question !== null) {
       question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
-     } 
+    } 
   
-  // Print alternatives for buttons to the page.
+    // Print alternatives for buttons to the page.
     if (alternative0Btn !== null) {
       alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
     }
@@ -356,7 +356,7 @@ function showNextQuestion(): void {
       question.innerText = 'You have answered all questions! Click Finish to see your result!';
     }
     
-     if (alternative0Btn !== null) {
+    if (alternative0Btn !== null) {
       alternative0Btn.classList.add('hidden');
     }
     if (alternative1Btn !== null) {
@@ -366,7 +366,7 @@ function showNextQuestion(): void {
       alternative2Btn.classList.add('hidden');
     }
     
-     if (nextQuestionBtn !== null) {
+    if (nextQuestionBtn !== null) {
       nextQuestionBtn.addEventListener('click', () => {
         if (lastPage !== null) {
           lastPage.classList.remove('hidden');
@@ -376,6 +376,7 @@ function showNextQuestion(): void {
         }
       });
     }
+  } 
 }
 
 

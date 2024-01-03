@@ -6,23 +6,28 @@ body {
     background-color: $turquoise;
     font-family: 'Roboto', sans-serif;
     list-style: none;
-    padding-left: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
     padding-top: 20px;
+    height: 100vh;
 }
 
-/* FIRST PAGE */
+/* START PAGE */
 
-h1 {
-    font-size: 1.8rem;
+/*h1 {
+    font-size: 2.1rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-}
+    padding-bottom: 20px;
+}*/
 
-/* BUTTONS */
+img {
+    height: fit-content;
+    padding-bottom: 20px;
+}
 
 button {
     cursor: pointer;
-    display: flex;
     justify-content: center;
     align-items: center;
     width: 300px;
@@ -41,43 +46,122 @@ button {
     box-shadow: 0 2px 2px rgba(208, 208, 208, 0.8);
 }
 
+.instructions {
+    font-size: 1.3rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    letter-spacing: 0.05rem;
+    word-spacing: 0.03rem;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+    color: #fff;
+    line-height: 2.2rem;
+    text-align: left;
+
+    .get-started {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-style: italic;
+        letter-spacing: 0.2rem;
+        color: $lightlemon;
+    }
+    
+}
+
+.start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-quiz-btn {
+    display: flex;
+    font-size: 1.5rem;
+    height: 50px;
+    width: 340px;
+    margin-top: 40px;
+    background-color: $lightlemon;
+    border: solid 4px $lemonyellow; 
+    justify-content: center;
+}
 
 /* GAME PAGE */
 
-.hidden{
+.hidden {
     display: none;
 }
 
-.question-container{
-    background-color: $lightblue;
+.game-page {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.next-question-btn{
-    width: 100px;
-    height: 45px;
+.question-container {
+    background-color: $lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    max-width: 100%;
+    height: 500px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
 }
 
-.alternative-btn{
-    background-color: white;
+.question {
+    font-size: 1.3rem;
+    letter-spacing: 0.04rem;
+    word-spacing: 0.04rem;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    height: 150px;
+
+}
+
+.next-question-btn {
+    width: 200px;
+    height: 50px;
+    font-size: 1.5rem;
+    background-color: $lightlemon;
+    border: solid 4px $lemonyellow;
+   
+    
+
+}
+
+.alternative-btn {
+    background-color: #fff;
     
 }
-.chosen{
+.chosen {
     border: solid black 5px;
     background-color: lightgrey; 
 }
-.notChosen{
+.notChosen {
     background-color: white;
 }
 
 
-.correct{
+.correct {
     background-color: green;
+    color: #fff;
 }
-.wrong{
+.wrong {
     background-color: red;
+    color: #fff;
 }
 
 
