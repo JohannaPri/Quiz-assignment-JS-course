@@ -180,6 +180,13 @@ function showGamePage(): void {
       musicQuiz[randomNumbersArray[0]].options[2]
     }`;
   }
+
+  // Update the question number display
+  const questionNumberElement: HTMLDivElement | null = document.querySelector('#questionNumber');
+  if (questionNumberElement !== null) {
+    questionNumberElement.innerText = `1/${randomNumbersArray.length}`;
+  }
+
 }
 
 if (startBtn !== null) {
@@ -288,60 +295,68 @@ let questionIndex: number = 0; // 1 since we use question 0 when the user clicks
 
 // Function displaying the next question.
 function showNextQuestion(): void {
-  // Reset all alternative buttons to default state on the next question.
-  if (alternative0Btn !== null) {
-    alternative0Btn.classList.remove('correct', 'wrong');
-    alternative0Btn.disabled = false;
-  }
-  if (alternative1Btn !== null) {
-    alternative1Btn.classList.remove('correct', 'wrong');
-    alternative1Btn.disabled = false;
-  }
-  if (alternative2Btn !== null) {
-    alternative2Btn.classList.remove('correct', 'wrong');
-    alternative2Btn.disabled = false;
-  }
 
-  // Reset chosenAlternative
-  chosenAlternative = null;
-
-  // Enable clicks for the next question
-  allowClicks = true;
+  // Increment the questionIndex before updating the display
+  questionIndex += 1;
 
   // Check if there are more questions to display.
-  if (questionIndex < randomNumbersArray.length - 1) {
-    // Display the next question.
-    if (question !== null) {
-      question.innerText = `${musicQuiz[randomNumbersArray[questionIndex + 1]].question}`;
+  if (questionIndex < randomNumbersArray.length) {
+    // Update the question number display
+    const questionNumberElement: HTMLDivElement | null = document.querySelector('#questionNumber');
+    if (questionNumberElement !== null) {
+      questionNumberElement.innerText = `${questionIndex + 1}/${randomNumbersArray.length}`;
     }
 
-    // Print alternatives for buttons to the page.
+    // Reset all alternative buttons to default state on the next question.
     if (alternative0Btn !== null) {
-      alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[0]}`;
+      alternative0Btn.classList.remove('correct', 'wrong');
+      alternative0Btn.disabled = false;
     }
     if (alternative1Btn !== null) {
-      alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[1]}`;
+      alternative1Btn.classList.remove('correct', 'wrong');
+      alternative1Btn.disabled = false;
     }
     if (alternative2Btn !== null) {
-      alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex + 1]].options[2]}`;
+      alternative2Btn.classList.remove('correct', 'wrong');
+      alternative2Btn.disabled = false;
     }
 
-    // Move to the next question for the next button click.
-    questionIndex += 1;
+    // Reset chosenAlternative
+    chosenAlternative = null;
+
+    // Enable clicks for the next question
+    allowClicks = true;
+
+  
+  // Display the next question.
+    if (question !== null) {
+      question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
+     } 
+  
+  // Print alternatives for buttons to the page.
+    if (alternative0Btn !== null) {
+      alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
+    }
+    if (alternative1Btn !== null) {
+      alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[1]}`;
+    }
+    if (alternative2Btn !== null) {
+      alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[2]}`;
+    }
   } else {
     // Handle the case when there are no more questions (quiz is finished).
     // (redirect to results page)
     console.log('Quiz finished!');
-
+    
     if (nextQuestionBtn !== null) {
       nextQuestionBtn.innerHTML = 'Finish';
     }
-
+    
     if (question !== null) {
       question.innerText = 'You have answered all questions! Click Finish to see your result!';
     }
-
-    if (alternative0Btn !== null) {
+    
+     if (alternative0Btn !== null) {
       alternative0Btn.classList.add('hidden');
     }
     if (alternative1Btn !== null) {
@@ -350,9 +365,8 @@ function showNextQuestion(): void {
     if (alternative2Btn !== null) {
       alternative2Btn.classList.add('hidden');
     }
-
-
-    if (nextQuestionBtn !== null) {
+    
+     if (nextQuestionBtn !== null) {
       nextQuestionBtn.addEventListener('click', () => {
         if (lastPage !== null) {
           lastPage.classList.remove('hidden');
@@ -362,25 +376,8 @@ function showNextQuestion(): void {
         }
       });
     }
-
-
-
-
-
-
-/*     if (nextQuestionBtn !== null) {
-      if (nextQuestionBtn.innerHTML === 'Finish') {
-        console.log('visa sista sidan');
-        
-        if (lastPage !== null) {
-          lastPage.classList.remove('hidden');
-        }
-      }
-    } */
-
-    
-  }
 }
+
 
 // Function controlling the selected answer. 
 function compareAnswer(): void {
