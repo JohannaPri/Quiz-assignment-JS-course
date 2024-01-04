@@ -16,7 +16,7 @@ Klicka i vilka krav ni har gjort:
 ### För Godkänt
 #### Kodkvalitet
 - [x] Koden är korrekt formaterad.
-- [ ] Koden innehåller enstaka buggar, men fungerar på det stora hela.
+- [x] Koden innehåller enstaka buggar, men fungerar på det stora hela.
 - [x] Ni har gjort åtminstone en mobilversion; om ni återanvänder samma layout i tablet/desktop så går det bra.
 - [x] Sidan ska vara någorlunda snygg (CSS).
 - [ ] Ni har checkat av "vanliga misstag" från tidigare uppgifter, såväl HTML & CSS som JavaScript.
@@ -28,11 +28,11 @@ Klicka i vilka krav ni har gjort:
 - [x] Skapa ett quiz med minst 20 frågor
 - [x] Varje fråga ska ha 3 svarsalternativ och endast 1 svarsalternativ ska vara korrekt
 - [x] Frågorna ska presenteras i slumpmässig ordning, och du ska visa 10 frågor per spelomgång
-- [ ] Om användaren väljer att spela igen, så ska inte samma 10 frågor komma upp på nytt
-- [ ] Du ska få poäng för rätt svar
+- [x] Om användaren väljer att spela igen, så ska inte samma 10 frågor komma upp på nytt
+- [x] Du ska få poäng för rätt svar
 - [x] Det ska bara visas en fråga åt gången på skärmen
-- [ ] Det ska finnas en tidräkning (uppåt). Tidräkningen ska stanna när alla frågor har besvarats.
-- [ ] Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.
+- [x] Det ska finnas en tidräkning (uppåt). Tidräkningen ska stanna när alla frågor har besvarats.
+- [x] Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.
 - [ ] Varje person ska ha gjort minst två pull requests.
 
 ### För plus i kanten
