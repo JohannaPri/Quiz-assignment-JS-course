@@ -166,7 +166,7 @@ export const musicQuiz: IQuizQuestion[] = [
     correctAnswerIndex: 2, // Go the Distance
   },
   {
-    question: 'In "Mulan," Mulan and the other soldiers sing an song before the war. What is the name of the song?',
+    question: 'In "Mulan," Mulan and the other soldiers sing a song before the war. What is the name of the song?',
     options: ['Reflection', 'I will Make a Man Out of You', 'Honor to Us All'],
     correctAnswerIndex: 1, // I'll Make a Man Out of You
   },
