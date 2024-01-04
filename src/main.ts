@@ -91,10 +91,16 @@ const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alter
 const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
 const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
 const finishBtn: HTMLButtonElement | null = document.querySelector('#finish-btn');
+const resultsTime: HTMLSpanElement | null = document.querySelector('#results-time');
+const resultsText: HTMLSpanElement | null = document.querySelector('#results-text');
+
+// Kommentera allt?
 
 // Variables for timer
 let startTime: number;
 let timerInterval: number;
+let totalTime: number = 0; 
+
 
 /**
  *
@@ -209,8 +215,11 @@ function startTimer(): void {
 }
 
 // Function to stop timer
-function stopTimer(): void {
+function stopTimer(): number {
   clearInterval(timerInterval);
+  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
+  totalTime += elapsedTime; // Add elapsed time to totalTime
+  return totalTime;
 }
 
 /**
@@ -228,9 +237,13 @@ function formatTime(seconds: number): string {
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 
+
+
+let currentTime: number = 0;
+
 // Function to update the timer display
 function updateTimer(): void {
-  const currentTime = Date.now();
+  currentTime = Date.now();
   const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
 
   const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
@@ -349,9 +362,8 @@ function resetAltBtns(): void {
 // Initialize question index
 let questionIndex: number = 0; // 1 since we use question 0 when the user clicks on the 'Start quiz'-button.
 
-// Select innerHTML to display score count
-const resultsText: HTMLSpanElement | null =
-  document.querySelector('#resultsText');
+
+
 console.log(resultsText);
 
 // Variable to keep track of points
@@ -426,33 +438,30 @@ function showNextQuestion(): void {
     }
 
     if (nextQuestionBtn !== null) {
-       nextQuestionBtn.classList.add('hidden');
+      nextQuestionBtn.classList.add('hidden');
     }
     if (nextQuestionBtn !== null) {
-    nextQuestionBtn.addEventListener('click', () => {
+      nextQuestionBtn.addEventListener('click', () => {
         // Stop the timer on the 10th question
         stopTimer();  
-          if (lastPage !== null) {
-            lastPage.classList.remove('hidden');
-          }
-          if (gamePage !== null) {
-           gamePage.classList.add('hidden');
-          }
+      });
     }
-   // PAJ
                     
-        if (finishBtn !== null) {
-          finishBtn.classList.remove('hidden');
-          finishBtn.addEventListener('click', () => {
-             if (lastPage !== null) {
-               lastPage.classList.remove('hidden');
-             }
+    if (finishBtn !== null) {
+      finishBtn.classList.remove('hidden');
+      finishBtn.addEventListener('click', () => {
+        if (lastPage !== null) {
+          lastPage.classList.remove('hidden');
+        }
         // Prints number of point to resultText on last page
         if (resultsText !== null) {
           resultsText.innerText = `${countPoints}/${randomNumbersArray.length}`;
         }
+        if (resultsTime !== null) {
+          resultsTime.innerText = `${totalTime}`;
+        }
         if (gamePage !== null) {
-           gamePage.classList.add('hidden');
+          gamePage.classList.add('hidden');
         }
       
       });
@@ -574,6 +583,9 @@ function playAgain(): void {
   if (alternative2Btn !== null) {
     alternative2Btn.classList.remove('hidden');
   }
+
+  countPoints = 0;
+
 }
 
 // Run the quiz once again
