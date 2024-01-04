@@ -62,11 +62,6 @@ if (container !== null) { // Om HTML-elementet finns
 }
  */
 
-
-
-
-
-
 /**
  *
  *
@@ -96,10 +91,6 @@ const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alter
 const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
 const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
 const finishBtn: HTMLButtonElement | null = document.querySelector('#finish-btn');
-
-
-
-
 
 
 
@@ -135,11 +126,6 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
 // Creates an array variable with numbers between 0-39.
 let randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
-
-
-
-
-
 
 /**
  *
@@ -190,7 +176,8 @@ function showGamePage(): void {
   console.log(randomNumbersArray);
 
   // Update the question number display
-  const questionNumberElement: HTMLDivElement | null = document.querySelector('#questionNumber');
+  const questionNumberElement: HTMLDivElement | null =
+    document.querySelector('#questionNumber');
   if (questionNumberElement !== null) {
     questionNumberElement.innerText = `1/${randomNumbersArray.length}`;
   }
@@ -199,11 +186,6 @@ function showGamePage(): void {
 if (startBtn !== null) {
   startBtn.addEventListener('click', showGamePage);
 }
-
-
-
-
-
 
 /**
  *
@@ -217,11 +199,11 @@ if (startBtn !== null) {
 // Add event listeners.
 if (alternative0Btn !== null) {
   alternative0Btn.addEventListener('click', () => {
-    handleButtonClick(alternative0Btn); 
+    handleButtonClick(alternative0Btn);
   });
 }
 if (alternative1Btn !== null) {
-  alternative1Btn.addEventListener('click', () => { 
+  alternative1Btn.addEventListener('click', () => {
     handleButtonClick(alternative1Btn);
   });
 }
@@ -237,8 +219,7 @@ let chosenAlternative: HTMLButtonElement | null = null;
 // Declare a variable to control whether clicks are allowed
 let allowClicks: boolean = true;
 
-
-// Function controlling clicks on alternative buttons. 
+// Function controlling clicks on alternative buttons.
 function handleButtonClick(clickedButton: HTMLButtonElement): void {
   if (!allowClicks) {
     return; // Clicks are disabled
@@ -250,7 +231,8 @@ function handleButtonClick(clickedButton: HTMLButtonElement): void {
 
   chosenAlternative = clickedButton;
 
-  const correctAnswerIndex = musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
+  const correctAnswerIndex =
+    musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
 
   // Add 'wrong' class to the chosen alternative if it's incorrect
   if (chosenAlternative.id !== `alternative${correctAnswerIndex}-btn`) {
@@ -264,11 +246,6 @@ function handleButtonClick(clickedButton: HTMLButtonElement): void {
   disableAlternativeButtons();
 }
 
-
-
-
-
-
 // Function that disables alternative buttons after selecting an answer.
 function disableAlternativeButtons(): void {
   if (alternative0Btn !== null) {
@@ -281,7 +258,6 @@ function disableAlternativeButtons(): void {
     alternative2Btn.disabled = true;
   }
 }
-
 
 
 // Function that remove the green/red color from the alt btns.
@@ -301,7 +277,6 @@ function resetAltBtns(): void {
 }
 
 
-
 /**
  *
  *
@@ -315,18 +290,28 @@ function resetAltBtns(): void {
 // Initialize question index
 let questionIndex: number = 0; // 1 since we use question 0 when the user clicks on the 'Start quiz'-button.
 
+// Select innerHTML to display score count
+const resultsText: HTMLSpanElement | null =
+  document.querySelector('#resultsText');
+console.log(resultsText);
+
+// Variable to keep track of points
+let countPoints: number = 0;
+
 // Function displaying the next question.
 function showNextQuestion(): void {
-
   // Increment the questionIndex before updating the display
   questionIndex += 1;
 
   // Check if there are more questions to display.
   if (questionIndex < randomNumbersArray.length) {
     // Update the question number display
-    const questionNumberElement: HTMLDivElement | null = document.querySelector('#questionNumber');
+    const questionNumberElement: HTMLDivElement | null =
+      document.querySelector('#questionNumber');
     if (questionNumberElement !== null) {
-      questionNumberElement.innerText = `${questionIndex + 1}/${randomNumbersArray.length}`;
+      questionNumberElement.innerText = `${questionIndex + 1}/${
+        randomNumbersArray.length
+      }`;
     }
 
     // Reset all alternative buttons to default state on the next question.
@@ -338,31 +323,39 @@ function showNextQuestion(): void {
     // Enable clicks for the next question
     allowClicks = true;
 
-  
     // Display the next question.
     if (question !== null) {
-      question.innerText = `${musicQuiz[randomNumbersArray[questionIndex]].question}`;
-    } 
-  
+      question.innerText = `${
+        musicQuiz[randomNumbersArray[questionIndex]].question
+      }`;
+    }
+
     // Print alternatives for buttons to the page.
     if (alternative0Btn !== null) {
-      alternative0Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[0]}`;
+      alternative0Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[0]
+      }`;
     }
     if (alternative1Btn !== null) {
-      alternative1Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[1]}`;
+      alternative1Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[1]
+      }`;
     }
     if (alternative2Btn !== null) {
-      alternative2Btn.innerHTML = `${musicQuiz[randomNumbersArray[questionIndex]].options[2]}`;
+      alternative2Btn.innerHTML = `${
+        musicQuiz[randomNumbersArray[questionIndex]].options[2]
+      }`;
     }
   } else {
     // Handle the case when there are no more questions (quiz is finished).
     // (redirect to results page)
     console.log('Quiz finished!');
-    
+
     if (question !== null) {
-      question.innerText = 'You have answered all questions! Click Finish to see your result!';
+      question.innerText =
+        'Well done, you have answered all the questions!\n Click Finish to see your result!';
     }
-    
+
     if (alternative0Btn !== null) {
       alternative0Btn.classList.add('hidden');
     }
@@ -372,7 +365,6 @@ function showNextQuestion(): void {
     if (alternative2Btn !== null) {
       alternative2Btn.classList.add('hidden');
     }
-
 
     if (nextQuestionBtn !== null) {
       nextQuestionBtn.classList.add('hidden');
@@ -384,16 +376,19 @@ function showNextQuestion(): void {
         if (lastPage !== null) {
           lastPage.classList.remove('hidden');
         }
+        // Prints number of point to resultText on last page
+        if (resultsText !== null) {
+          resultsText.innerText = `${countPoints}/${randomNumbersArray.length}`;
+        }
         if (gamePage !== null) {
           gamePage.classList.add('hidden');
         }
       });
     }
-  } 
+  }
 }
 
-
-// Function controlling the selected answer. 
+// Function controlling the selected answer.
 function compareAnswer(): void {
   if (chosenAlternative === null || !allowClicks) {
     return; // no alternative selected or already processed
@@ -402,11 +397,15 @@ function compareAnswer(): void {
   // Disable further clicks
   allowClicks = false;
 
-  const correctAnswerIndex = musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
+  const correctAnswerIndex =
+    musicQuiz[randomNumbersArray[questionIndex]].correctAnswerIndex;
 
   // Add 'correct' or 'wrong' class based on the correctness
   if (chosenAlternative.id === `alternative${correctAnswerIndex}-btn`) {
     chosenAlternative.classList.add('correct');
+    // Adds one point for every correct answer
+    countPoints += 1;
+    console.log(countPoints);
   } else {
     chosenAlternative.classList.add('wrong');
   }
@@ -417,7 +416,6 @@ function compareAnswer(): void {
   // Show the next question
   showNextQuestion();
 }
-
 
 if (nextQuestionBtn !== null) {
   nextQuestionBtn.addEventListener('click', compareAnswer);
@@ -501,18 +499,8 @@ function playAgain(): void {
   }
 }
 
-
 // Run the quiz once again
 if (tryAgainBtn !== null) {
   tryAgainBtn.addEventListener('click', playAgain);
 }
-
-
-
-
-
-
-
-
-
 

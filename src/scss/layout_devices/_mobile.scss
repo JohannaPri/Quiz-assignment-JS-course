@@ -1,15 +1,18 @@
-@import "../variables/variables";
+@import '../variables/variables';
 
 /* BODY */
 
 body {
-    background-color: $turquoise;
-    font-family: 'Roboto', sans-serif;
-    list-style: none;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 20px;
-    height: 100vh;
+  background-color: $turquoise;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 20px;
+  max-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* START PAGE */
@@ -21,148 +24,196 @@ body {
     padding-bottom: 20px;
 }*/
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
 img {
-    height: fit-content;
-    padding-bottom: 20px;
+  height: fit-content;
+  padding-bottom: 20px;
 }
 
 button {
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 45px;
-    text-align: center;
-    background-color: #fff;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    text-transform:capitalize;
-    font-size: 1.2rem;
-    letter-spacing: 0.1rem;
-    border-radius: 40px;
-    border: 1px solid white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 2px rgba(208, 208, 208, 0.8);
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 45px;
+  text-align: center;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  border-radius: 40px;
+  border: 1px solid white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 2px rgba(208, 208, 208, 0.8);
 }
 
 .instructions {
-    font-size: 1.3rem;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    letter-spacing: 0.05rem;
-    word-spacing: 0.03rem;
-    border-top: solid 1px black;
-    border-bottom: solid 1px black;
-    color: #fff;
-    line-height: 2.2rem;
-    text-align: left;
+  font-size: 1.3rem;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  letter-spacing: 0.05rem;
+  word-spacing: 0.03rem;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+  color: #fff;
+  line-height: 2.2rem;
+  text-align: left;
 
-    .get-started {
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        text-transform: capitalize;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        font-style: italic;
-        letter-spacing: 0.2rem;
-        color: $lightlemon;
-    }
-    
+  .get-started {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-style: italic;
+    letter-spacing: 0.2rem;
+    color: $lightlemon;
+  }
+
+  .one-choice {
+    font-weight: bolder;
+  }
 }
 
 .start-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .start-quiz-btn {
-    display: flex;
-    font-size: 1.5rem;
-    height: 50px;
-    width: 340px;
-    margin-top: 40px;
-    background-color: $lightlemon;
-    border: solid 4px $lemonyellow; 
-    justify-content: center;
+  display: flex;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 340px;
+  margin-top: 40px;
+  background-color: $lightlemon;
+  border: solid 4px $lemonyellow;
+  justify-content: center;
 }
 
 /* GAME PAGE */
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .game-page-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#questionNumber {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #fff;
 }
 
 .question-container {
-    background-color: $lightblue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    max-width: 100%;
-    height: 500px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 10px;
+  background-color: $lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-width: 100%;
+  height: 500px;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .question {
-    font-size: 1.3rem;
-    letter-spacing: 0.04rem;
-    word-spacing: 0.04rem;
-    text-transform: capitalize;
-    font-family: 'Roboto', sans-serif;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    font-weight: bold;
-    height: 150px;
-
+  font-size: 1.3rem;
+  letter-spacing: 0.04rem;
+  word-spacing: 0.04rem;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
+  font-style: italic;
+  height: 150px;
+  margin-bottom: -20px;
 }
 
 .next-question-btn {
-    width: 200px;
-    height: 50px;
-    font-size: 1.5rem;
-    background-color: $lightlemon;
-    border: solid 4px $lemonyellow;
-   
-    
-
+  width: 200px;
+  height: 50px;
+  font-size: 1.5rem;
+  background-color: $lightlemon;
+  border: solid 4px $lemonyellow;
 }
 
 .alternative-btn {
-    background-color: #fff;
-    
+  background-color: #fff;
+  width: 340px;
+  height: 60px;
+  font-size: 1.1rem;
 }
 .chosen {
-    border: solid black 5px;
-    background-color: lightgrey; 
+  border: solid black 5px;
+  background-color: lightgrey;
 }
 .notChosen {
-    background-color: white;
+  background-color: white;
 }
-
 
 .correct {
-    background-color: green;
-    color: #fff;
+  background-color: green;
+  color: #fff;
 }
 .wrong {
-    background-color: red;
-    color: #fff;
+  background-color: red;
+  color: #fff;
 }
 
-
 /* LAST PAGE */
+
+.last-page-content {
+  flex-direction: column;
+  align-items: center;
+}
+
+.quiz-summary {
+  background-color: $lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-width: 100%;
+  height: 500px;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.try-again-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.try-again-btn {
+  display: flex;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 340px;
+  margin-top: 40px;
+  background-color: $lightlemon;
+  border: solid 4px $lemonyellow;
+  justify-content: center;
+}
+
+// TODO: Style blue boxes on all pages using one class or existing classes in one

@@ -1,20 +1,34 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:url" content="https://www.thelemonsquiz.com"> 
-    <meta property="og:title" content="The Lemons Quiz"> 
-    <meta property="og:description" content="Play the most popular and fun movie music quiz there is on the web!"> 
-    <meta property="og:image" content="https://www.thelemonsquiz/lemons/quiz.png"> 
-    <meta name="description" content="Welcome to The Lemons quiz, here can you play the most amazing movie music quiz, you will learn and have fun at the same time!"> 
-    <meta name="keywords" content="amazing, quiz, experience, fun, movie, film, music, learn"> 
+    <meta property="og:url" content="https://www.thelemonsquiz.com" />
+    <meta property="og:title" content="The Lemons Quiz" />
+    <meta
+      property="og:description"
+      content="Play the most popular and fun movie music quiz there is on the web!"
+    />
+    <meta
+      property="og:image"
+      content="https://www.thelemonsquiz/lemons/quiz.png"
+    />
+    <meta
+      name="description"
+      content="Welcome to The Lemons quiz, here can you play the most amazing movie music quiz, you will learn and have fun at the same time!"
+    />
+    <meta
+      name="keywords"
+      content="amazing, quiz, experience, fun, movie, film, music, learn"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Roboto&family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
 
     <title>The Lemons Quiz</title>
     <script type="application/ld+json">
@@ -24,49 +38,53 @@
         "name": "The Lemons Quiz",
         "url": "https://www.thelemonsquiz.com",
 
-          "contactPoint": {
+        "contactPoint": {
           "@type": "Telephone",
           "telephone": "+447-056-8848",
           "contactType": "customer service",
           "areaServed": "London",
           "availableLanguage": ["English"]
-        },
+        }
       }
     </script>
   </head>
 
   <body>
-
     <header>
-      <img src="/src/assets/images/lemons-logo-blue-background.png" alt="Lemons logo with yellow text and a slice of lemon" width="1500" height="566">
+      <img
+        src="/src/assets/images/lemons-logo-blue-background.png"
+        alt="Lemons logo with yellow text and a slice of lemon"
+        width="1500"
+        height="566"
+      />
     </header>
-    
+
     <!----------------------FIRST PAGE---------------------->
-   
-      <div class="start-page" id="start-page">
-        <div class="text-container-start">
-          <p class="instructions">
-          How much do you know about the sweet 
-          tunes from our most beloved movies?<br> 
-          Ten questions will be presented, 
-          each with three alternatives. 
-          Only one answer will be correct.<br>
-          
-          Once you have chosen your answer you can't change your mind.
 
-          Your number of correct answers, and the total time taken 
-          to complete the quiz, will be presented at the end.<br> 
-          <span class="get-started">Let's get started!</span></p>
-        </div>
-        <button class="start-quiz-btn" id="start-quiz-btn">Start quiz</button>
+    <div class="start-page" id="start-page">
+      <div class="text-container-start">
+        <p class="instructions">
+          How much do you know about the sweet tunes from our most beloved
+          movies?<br />
+          Ten questions will be presented, each with three alternatives. Only
+          one answer will be correct.<br />
 
+          <span class="one-choice"
+            >Once you have chosen your answer you can't change your mind.</span
+          ><br />
+
+          Your number of correct answers, and the total time taken to complete
+          the quiz, will be presented at the end.<br />
+          <span class="get-started">Let's get started!</span>
+        </p>
       </div>
-    
+      <button class="start-quiz-btn" id="start-quiz-btn">Start quiz</button>
+    </div>
+
     <!----------------------GAME PAGE---------------------->
-    
+
     <div class="game-page hidden" id="game-page">
       <div class="game-page-content">
-
         <span class="time-count"></span>
         <span class="quiz-progress"></span>
 
@@ -84,19 +102,27 @@
         <button class="finish-btn hidden" id="finish-btn">Finish</button>
       </div>
     </div>
-    
+
     <!----------------------LAST PAGE---------------------->
 
     <div class="last-page hidden" id="last-page">
-      <div class="quiz-summary">
-          <h3 class="results-heading">Your results!</h3>
-          <span class="results-text">Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.</span>
-      </div>
+      <div class="last-page-content">
+        <div class="quiz-summary">
+          <h3 class="results-heading">Your results</h3>
 
-      <button class="try-again-btn" id="try-again-btn">Try again</button>
+          <p>
+            Your score is
+            <span class="results-text" id="resultsText"></span>.
+          </p>
+          <!-- Different text depending on score? -->
+        </div>
+
+        <div class="try-again-btn-container">
+          <button class="try-again-btn" id="try-again-btn">Try again</button>
+        </div>
+      </div>
     </div>
 
-    
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
