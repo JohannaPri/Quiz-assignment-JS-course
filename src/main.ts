@@ -92,7 +92,9 @@ const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alter
 const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
 const finishBtn: HTMLButtonElement | null = document.querySelector('#finish-btn');
 
-
+// Variables for timer
+let startTime: number;
+let timerInterval: number;
 
 /**
  *
@@ -181,11 +183,67 @@ function showGamePage(): void {
   if (questionNumberElement !== null) {
     questionNumberElement.innerText = `1/${randomNumbersArray.length}`;
   }
+
+  // Start the timer
+  startTimer();
+
 }
 
 if (startBtn !== null) {
   startBtn.addEventListener('click', showGamePage);
 }
+
+/**
+ *
+ *
+ *
+ * Timer
+ *
+ *
+ *
+ */
+// Function to start timer
+function startTimer(): void {
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+// Function to stop timer
+function stopTimer(): void {
+  clearInterval(timerInterval);
+}
+
+/**
+ * Function to format time as "00:00"
+ * @param seconds - The time in seconds
+ * @returns A formatted string in the "mm:ss" format
+ */
+function formatTime(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+  const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds}`;
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Function to update the timer display
+function updateTimer(): void {
+  const currentTime = Date.now();
+  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
+
+  const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
+  if (timerElement !== null) {
+    const formattedTime = formatTime(elapsedTime);
+    timerElement.innerText = `${formattedTime}`;
+  }
+}
+
+
+
+
+
 
 /**
  *
@@ -245,6 +303,7 @@ function handleButtonClick(clickedButton: HTMLButtonElement): void {
   // Disable other alternative buttons
   disableAlternativeButtons();
 }
+
 
 // Function that disables alternative buttons after selecting an answer.
 function disableAlternativeButtons(): void {
@@ -367,22 +426,35 @@ function showNextQuestion(): void {
     }
 
     if (nextQuestionBtn !== null) {
-      nextQuestionBtn.classList.add('hidden');
+       nextQuestionBtn.classList.add('hidden');
     }
-    
-    if (finishBtn !== null) {
-      finishBtn.classList.remove('hidden');
-      finishBtn.addEventListener('click', () => {
-        if (lastPage !== null) {
-          lastPage.classList.remove('hidden');
-        }
+    if (nextQuestionBtn !== null) {
+    nextQuestionBtn.addEventListener('click', () => {
+        // Stop the timer on the 10th question
+        stopTimer();  
+          if (lastPage !== null) {
+            lastPage.classList.remove('hidden');
+          }
+          if (gamePage !== null) {
+           gamePage.classList.add('hidden');
+          }
+    }
+   // PAJ
+                    
+        if (finishBtn !== null) {
+          finishBtn.classList.remove('hidden');
+          finishBtn.addEventListener('click', () => {
+             if (lastPage !== null) {
+               lastPage.classList.remove('hidden');
+             }
         // Prints number of point to resultText on last page
         if (resultsText !== null) {
           resultsText.innerText = `${countPoints}/${randomNumbersArray.length}`;
         }
         if (gamePage !== null) {
-          gamePage.classList.add('hidden');
+           gamePage.classList.add('hidden');
         }
+      
       });
     }
   }
@@ -412,6 +484,11 @@ function compareAnswer(): void {
 
   // Disable other alternative buttons
   disableAlternativeButtons();
+
+  if (questionIndex === 9) {
+    // Stop the timer on the 10th question
+    stopTimer();
+  }
 
   // Show the next question
   showNextQuestion();
