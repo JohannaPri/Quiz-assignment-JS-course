@@ -81,20 +81,18 @@ import { showGamePage } from './helpers.ts';  */
 
 // Creates variables for the HTML elements.
 const startPage: HTMLDivElement | null = document.querySelector('#start-page');
-const startBtn: HTMLButtonElement | null =
-  document.querySelector('#start-quiz-btn');
+const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
 const gamePage: HTMLDivElement | null = document.querySelector('#game-page');
 const lastPage: HTMLDivElement | null = document.querySelector('#last-page');
 const question: HTMLSpanElement | null = document.querySelector('#question');
-const nextQuestionBtn: HTMLButtonElement | null =
-  document.querySelector('#next-question-btn');
-const alternative0Btn: HTMLButtonElement | null =
-  document.querySelector('#alternative0-btn');
-const alternative1Btn: HTMLButtonElement | null =
-  document.querySelector('#alternative1-btn');
-const alternative2Btn: HTMLButtonElement | null =
-  document.querySelector('#alternative2-btn');
-// const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
+const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
+const alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
+const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
+const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
+const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
+const finishBtn: HTMLButtonElement | null = document.querySelector('#finish-btn');
+
+
 
 /**
  *
@@ -126,7 +124,7 @@ function generateUniqueRandomNumbers(count: number, range: number): number[] {
 }
 
 // Creates an array variable with numbers between 0-39.
-const randomNumbersArray = generateUniqueRandomNumbers(10, 40);
+let randomNumbersArray = generateUniqueRandomNumbers(10, 40);
 console.log(randomNumbersArray);
 
 /**
@@ -139,16 +137,19 @@ console.log(randomNumbersArray);
  *
  */
 
+
+
 // Function showing the game page (deletes class=hidden) when the user clicks on the 'Start quiz'-button.
 // Also shows the first question.
 function showGamePage(): void {
+
   if (startPage !== null) {
     startPage.classList.add('hidden');
   }
-
   if (gamePage !== null) {
     gamePage.classList.remove('hidden');
   }
+
   // Print question to page.
   if (question !== null) {
     question.innerHTML = `${musicQuiz[randomNumbersArray[0]].question}`;
@@ -170,6 +171,9 @@ function showGamePage(): void {
       musicQuiz[randomNumbersArray[0]].options[2]
     }`;
   }
+
+  console.log('nu ska vi jämföra randomNumbersArray första och andra omgången');
+  console.log(randomNumbersArray);
 
   // Update the question number display
   const questionNumberElement: HTMLDivElement | null =
@@ -255,6 +259,24 @@ function disableAlternativeButtons(): void {
   }
 }
 
+
+// Function that remove the green/red color from the alt btns.
+function resetAltBtns(): void {
+  if (alternative0Btn !== null) {
+    alternative0Btn.classList.remove('correct', 'wrong');
+    alternative0Btn.disabled = false;
+  }
+  if (alternative1Btn !== null) {
+    alternative1Btn.classList.remove('correct', 'wrong');
+    alternative1Btn.disabled = false;
+  }
+  if (alternative2Btn !== null) {
+    alternative2Btn.classList.remove('correct', 'wrong');
+    alternative2Btn.disabled = false;
+  }
+}
+
+
 /**
  *
  *
@@ -293,18 +315,7 @@ function showNextQuestion(): void {
     }
 
     // Reset all alternative buttons to default state on the next question.
-    if (alternative0Btn !== null) {
-      alternative0Btn.classList.remove('correct', 'wrong');
-      alternative0Btn.disabled = false;
-    }
-    if (alternative1Btn !== null) {
-      alternative1Btn.classList.remove('correct', 'wrong');
-      alternative1Btn.disabled = false;
-    }
-    if (alternative2Btn !== null) {
-      alternative2Btn.classList.remove('correct', 'wrong');
-      alternative2Btn.disabled = false;
-    }
+    resetAltBtns();
 
     // Reset chosenAlternative
     chosenAlternative = null;
@@ -340,10 +351,6 @@ function showNextQuestion(): void {
     // (redirect to results page)
     console.log('Quiz finished!');
 
-    if (nextQuestionBtn !== null) {
-      nextQuestionBtn.innerHTML = 'Finish';
-    }
-
     if (question !== null) {
       question.innerText =
         'Well done, you have answered all the questions!\n Click Finish to see your result!';
@@ -360,7 +367,12 @@ function showNextQuestion(): void {
     }
 
     if (nextQuestionBtn !== null) {
-      nextQuestionBtn.addEventListener('click', () => {
+      nextQuestionBtn.classList.add('hidden');
+    }
+    
+    if (finishBtn !== null) {
+      finishBtn.classList.remove('hidden');
+      finishBtn.addEventListener('click', () => {
         if (lastPage !== null) {
           lastPage.classList.remove('hidden');
         }
@@ -407,4 +419,88 @@ function compareAnswer(): void {
 
 if (nextQuestionBtn !== null) {
   nextQuestionBtn.addEventListener('click', compareAnswer);
+} 
+
+
+
+
+
+
+// nytt
+
+
+// Function to generate a new random numbers array for round two, 
+// avoiding the numbers to the questions in the first round.
+function generateNewUniqueRandomNumbers(count: number, range: number, usedNumbers: number []): number[] {
+  
+  const randomNumbers: number[] = [];
+
+  while (randomNumbers.length < count) {
+    const randomNumber = Math.floor(Math.random() * range);
+
+    // Checks if the number is not in the array of used numbers or the result array.
+    if (!usedNumbers.includes(randomNumber) && !randomNumbers.includes(randomNumber)) {
+      randomNumbers.push(randomNumber);
+    }
+  }
+
+  return randomNumbers;
 }
+
+
+// Function to reset the game and show the game page with new random numbers.
+function playAgain(): void {
+  // Generate new random numbers excluding the used question indices.
+  const newRandomNumbersArray = generateNewUniqueRandomNumbers(10, 40, randomNumbersArray);
+
+  // Add the new random numbers for next round to the variable randomNumbersArray.
+  randomNumbersArray = newRandomNumbersArray;
+
+  // Reset all alternative buttons to default state on the next question.
+  resetAltBtns();
+
+  // Reset chosenAlternative
+  chosenAlternative = null;
+
+  // Enable clicks for the next question
+  allowClicks = true;
+
+  // Reset question index to 0.
+  questionIndex = 0;
+
+  
+  // Hide Finish btn.
+  if (finishBtn !== null) {
+    finishBtn.classList.add('hidden');
+  }
+  // Show Next question btn.
+  if (nextQuestionBtn !== null) {
+    nextQuestionBtn.classList.remove('hidden');
+  }
+  
+  
+  // Hide the last page
+  if (lastPage !== null) {
+    lastPage.classList.add('hidden');
+  }
+
+  // Display the first question.
+  showGamePage();
+
+  // Show alternative buttons
+  if (alternative0Btn !== null) {
+    alternative0Btn.classList.remove('hidden');
+  }
+  if (alternative1Btn !== null) {
+    alternative1Btn.classList.remove('hidden');
+  }
+  if (alternative2Btn !== null) {
+    alternative2Btn.classList.remove('hidden');
+  }
+}
+
+// Run the quiz once again
+if (tryAgainBtn !== null) {
+  tryAgainBtn.addEventListener('click', playAgain);
+}
+
