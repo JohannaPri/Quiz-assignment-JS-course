@@ -194,9 +194,6 @@ function showGamePage(): void {
   if (questionNumberElement !== null) {
     questionNumberElement.innerText = `1/${randomNumbersArray.length}`;
   }
-
-  
-
 }
 
 if (startBtn !== null) {
@@ -288,7 +285,7 @@ function disableAlternativeButtons(): void {
 
 
 // Function that remove the green/red color from the alt btns.
-function removeColorsFromAltBtns(): void {
+function resetAltBtns(): void {
   if (alternative0Btn !== null) {
     alternative0Btn.classList.remove('correct', 'wrong');
     alternative0Btn.disabled = false;
@@ -324,9 +321,6 @@ function showNextQuestion(): void {
   // Increment the questionIndex before updating the display
   questionIndex += 1;
 
-  console.log(questionIndex);
-  console.log(randomNumbersArray);
-
   // Check if there are more questions to display.
   if (questionIndex < randomNumbersArray.length) {
     // Update the question number display
@@ -336,7 +330,7 @@ function showNextQuestion(): void {
     }
 
     // Reset all alternative buttons to default state on the next question.
-    removeColorsFromAltBtns();
+    resetAltBtns();
 
     // Reset chosenAlternative
     chosenAlternative = null;
@@ -364,10 +358,6 @@ function showNextQuestion(): void {
     // Handle the case when there are no more questions (quiz is finished).
     // (redirect to results page)
     console.log('Quiz finished!');
-    
-    if (nextQuestionBtn !== null) {
-      nextQuestionBtn.innerHTML = 'Finish';
-    }
     
     if (question !== null) {
       question.innerText = 'You have answered all questions! Click Finish to see your result!';
@@ -443,7 +433,7 @@ if (nextQuestionBtn !== null) {
 
 // Function to generate a new random numbers array for round two, 
 // avoiding the numbers to the questions in the first round.
-function generateUniqueRandomNumbersAgain(count: number, range: number, usedNumbers: number []): number[] {
+function generateNewUniqueRandomNumbers(count: number, range: number, usedNumbers: number []): number[] {
   
   const randomNumbers: number[] = [];
 
@@ -459,16 +449,17 @@ function generateUniqueRandomNumbersAgain(count: number, range: number, usedNumb
   return randomNumbers;
 }
 
+
 // Function to reset the game and show the game page with new random numbers.
 function playAgain(): void {
   // Generate new random numbers excluding the used question indices.
-  const newRandomNumbersArray = generateUniqueRandomNumbersAgain(10, 40, randomNumbersArray);
+  const newRandomNumbersArray = generateNewUniqueRandomNumbers(10, 40, randomNumbersArray);
 
-  // Show the game page with the new set of random numbers.
+  // Add the new random numbers for next round to the variable randomNumbersArray.
   randomNumbersArray = newRandomNumbersArray;
 
   // Reset all alternative buttons to default state on the next question.
-  removeColorsFromAltBtns();
+  resetAltBtns();
 
   // Reset chosenAlternative
   chosenAlternative = null;
@@ -479,13 +470,14 @@ function playAgain(): void {
   // Reset question index to 0.
   questionIndex = 0;
 
-
-  if (nextQuestionBtn !== null) {
-    nextQuestionBtn.classList.remove('hidden');
-  }
-
+  
+  // Hide Finish btn.
   if (finishBtn !== null) {
     finishBtn.classList.add('hidden');
+  }
+  // Show Next question btn.
+  if (nextQuestionBtn !== null) {
+    nextQuestionBtn.classList.remove('hidden');
   }
   
   
@@ -497,9 +489,7 @@ function playAgain(): void {
   // Display the first question.
   showGamePage();
 
-  
-
-
+  // Show alternative buttons
   if (alternative0Btn !== null) {
     alternative0Btn.classList.remove('hidden');
   }
@@ -508,10 +498,6 @@ function playAgain(): void {
   }
   if (alternative2Btn !== null) {
     alternative2Btn.classList.remove('hidden');
-  }
-
-  if (nextQuestionBtn !== null) {
-    nextQuestionBtn.innerHTML = 'Next';
   }
 }
 
