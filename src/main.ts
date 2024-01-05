@@ -441,10 +441,7 @@ if (nextQuestionBtn !== null) {
  * avoiding the numbers to the questions in the first round.
  */
 function generateNewUniqueRandomNumbers(
-  count: number,
-  range: number,
-  usedNumbers: number[]
-): number[] {
+  count: number, range: number, usedNumbers: number[] ): number[] {
   const randomNumbers: number[] = [];
 
   while (randomNumbers.length < count) {
@@ -468,10 +465,7 @@ function generateNewUniqueRandomNumbers(
 function playAgain(): void {
   // Generate new random numbers excluding the used question indices.
   const newRandomNumbersArray = generateNewUniqueRandomNumbers(
-    10,
-    40,
-    randomNumbersArray
-  );
+    10, 40, randomNumbersArray );
 
   // Add the new random numbers for next round to the variable randomNumbersArray.
   randomNumbersArray = newRandomNumbersArray;
