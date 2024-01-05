@@ -100,6 +100,8 @@ const resultsText: HTMLSpanElement | null = document.querySelector('#results-tex
 let startTime: number;
 let timerInterval: number;
 let totalTime: number = 0; 
+let elapsedTime: number = 0;
+const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
 
 
 /**
@@ -150,6 +152,10 @@ console.log(randomNumbersArray);
 // Function showing the game page (deletes class=hidden) when the user clicks on the 'Start quiz'-button.
 // Also shows the first question.
 function showGamePage(): void {
+
+  // Reset timer to 0.
+  totalTime = 0;
+  elapsedTime = 0;
 
   if (startPage !== null) {
     startPage.classList.add('hidden');
@@ -210,6 +216,8 @@ if (startBtn !== null) {
  */
 // Function to start timer
 function startTimer(): void {
+  totalTime = 0;
+  elapsedTime = 0;
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 1000);
 }
@@ -217,7 +225,7 @@ function startTimer(): void {
 // Function to stop timer
 function stopTimer(): number {
   clearInterval(timerInterval);
-  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
+  elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
   totalTime += elapsedTime; // Add elapsed time to totalTime
   return totalTime;
 }
@@ -246,7 +254,6 @@ function updateTimer(): void {
   currentTime = Date.now();
   const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
 
-  const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
   if (timerElement !== null) {
     const formattedTime = formatTime(elapsedTime);
     timerElement.innerText = `${formattedTime}`;
@@ -440,12 +447,12 @@ function showNextQuestion(): void {
     if (nextQuestionBtn !== null) {
       nextQuestionBtn.classList.add('hidden');
     }
-    if (nextQuestionBtn !== null) {
+    /* if (nextQuestionBtn !== null) {
       nextQuestionBtn.addEventListener('click', () => {
         // Stop the timer on the 10th question
         stopTimer();  
       });
-    }
+    } */
                     
     if (finishBtn !== null) {
       finishBtn.classList.remove('hidden');
@@ -554,6 +561,11 @@ function playAgain(): void {
   // Reset question index to 0.
   questionIndex = 0;
 
+
+  if (timerElement !== null) {
+    timerElement.innerText = '00:00';
+  }
+  
   
   // Hide Finish btn.
   if (finishBtn !== null) {
