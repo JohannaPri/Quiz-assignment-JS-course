@@ -3,26 +3,34 @@ import './scss/style.scss';
 // Imports array with quiz.
 import { musicQuiz } from './questions.ts';
 
-
 // Creates variables for the HTML elements.
 const startPage: HTMLDivElement | null = document.querySelector('#start-page');
-const startBtn: HTMLButtonElement | null = document.querySelector('#start-quiz-btn');
+const startBtn: HTMLButtonElement | null =
+  document.querySelector('#start-quiz-btn');
 const gamePage: HTMLDivElement | null = document.querySelector('#game-page');
 const lastPage: HTMLDivElement | null = document.querySelector('#last-page');
 const question: HTMLSpanElement | null = document.querySelector('#question');
-const nextQuestionBtn: HTMLButtonElement | null = document.querySelector('#next-question-btn');
-const alternative0Btn: HTMLButtonElement | null = document.querySelector('#alternative0-btn');
-const alternative1Btn: HTMLButtonElement | null = document.querySelector('#alternative1-btn');
-const alternative2Btn: HTMLButtonElement | null = document.querySelector('#alternative2-btn');
-const tryAgainBtn: HTMLButtonElement | null = document.querySelector('#try-again-btn');
-const finishBtn: HTMLButtonElement | null = document.querySelector('#finish-btn');
-const resultsTime: HTMLSpanElement | null = document.querySelector('#results-time');
-const resultsText: HTMLSpanElement | null = document.querySelector('#results-text');
+const nextQuestionBtn: HTMLButtonElement | null =
+  document.querySelector('#next-question-btn');
+const alternative0Btn: HTMLButtonElement | null =
+  document.querySelector('#alternative0-btn');
+const alternative1Btn: HTMLButtonElement | null =
+  document.querySelector('#alternative1-btn');
+const alternative2Btn: HTMLButtonElement | null =
+  document.querySelector('#alternative2-btn');
+const tryAgainBtn: HTMLButtonElement | null =
+  document.querySelector('#try-again-btn');
+const finishBtn: HTMLButtonElement | null =
+  document.querySelector('#finish-btn');
+const resultsTime: HTMLSpanElement | null =
+  document.querySelector('#results-time');
+const resultsText: HTMLSpanElement | null =
+  document.querySelector('#results-text');
 
 // Variables for timer
 let startTime: number;
 let timerInterval: number;
-let totalTime: number = 0; 
+let totalTime: number = 0;
 let elapsedTime: number = 0;
 const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
 
@@ -30,7 +38,6 @@ const timerElement: HTMLSpanElement | null = document.querySelector('#timer');
  *Function generating unique numbers.
  */
 function generateUniqueRandomNumbers(count: number, range: number): number[] {
-
   const randomNumbers: number[] = [];
 
   while (randomNumbers.length < count) {
@@ -62,7 +69,6 @@ console.log(randomNumbersArray);
 // Function showing the game page (deletes class=hidden) when the user clicks on the 'Start quiz'-button.
 // Also shows the first question.
 function showGamePage(): void {
-
   // Reset timer to 0.
   totalTime = 0;
   elapsedTime = 0;
@@ -98,7 +104,7 @@ function showGamePage(): void {
 
   // Update the question number display
   const questionNumberElement: HTMLDivElement | null =
-    document.querySelector('#questionNumber');
+    document.querySelector('#question-number');
   if (questionNumberElement !== null) {
     questionNumberElement.innerText = `1/${randomNumbersArray.length}`;
   }
@@ -121,9 +127,9 @@ if (startBtn !== null) {
  *
  */
 
-/**  
+/**
  * Function to start timer
-*/
+ */
 function startTimer(): void {
   totalTime = 0;
   elapsedTime = 0;
@@ -132,8 +138,8 @@ function startTimer(): void {
 }
 
 /**
-* Function to stop timer
-*/
+ * Function to stop timer
+ */
 function stopTimer(): number {
   clearInterval(timerInterval);
   elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
@@ -152,7 +158,8 @@ function formatTime(seconds: number): string {
   const remainingSeconds = seconds % 60;
 
   const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-  const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds}`;
+  const formattedSeconds =
+    remainingSeconds < 10 ? `0${remainingSeconds}` : `${remainingSeconds}`;
 
   return `${formattedMinutes}:${formattedSeconds}`;
 }
@@ -226,7 +233,7 @@ function handleButtonClick(clickedButton: HTMLButtonElement): void {
   } else {
     // Add 'correct' class to the correct alternative
     chosenAlternative.classList.add('correct');
-  } 
+  }
 
   // Disable other alternative buttons
   disableAlternativeButtons();
@@ -294,7 +301,7 @@ function showNextQuestion(): void {
   if (questionIndex < randomNumbersArray.length) {
     // Update the question number display
     const questionNumberElement: HTMLDivElement | null =
-      document.querySelector('#questionNumber');
+      document.querySelector('#question-number');
     if (questionNumberElement !== null) {
       questionNumberElement.innerText = `${questionIndex + 1}/${
         randomNumbersArray.length
@@ -356,7 +363,7 @@ function showNextQuestion(): void {
     if (nextQuestionBtn !== null) {
       nextQuestionBtn.classList.add('hidden');
     }
-                    
+
     if (finishBtn !== null) {
       finishBtn.classList.remove('hidden');
       finishBtn.addEventListener('click', () => {
@@ -373,7 +380,6 @@ function showNextQuestion(): void {
         if (gamePage !== null) {
           gamePage.classList.add('hidden');
         }
-      
       });
     }
   }
@@ -396,7 +402,7 @@ function compareAnswer(): void {
   // Add 'correct' or 'wrong' class based on the correctness
   if (chosenAlternative.id === `alternative${correctAnswerIndex}-btn`) {
     chosenAlternative.classList.add('correct');
-    
+
     // Adds one point for every correct answer
     countPoints += 1;
     console.log(countPoints);
@@ -418,7 +424,7 @@ function compareAnswer(): void {
 
 if (nextQuestionBtn !== null) {
   nextQuestionBtn.addEventListener('click', compareAnswer);
-} 
+}
 
 /**
  *
@@ -434,15 +440,21 @@ if (nextQuestionBtn !== null) {
  * Function to generate a new random numbers array for round two,
  * avoiding the numbers to the questions in the first round.
  */
-function generateNewUniqueRandomNumbers(count: number, range: number, usedNumbers: number []): number[] {
-  
+function generateNewUniqueRandomNumbers(
+  count: number,
+  range: number,
+  usedNumbers: number[]
+): number[] {
   const randomNumbers: number[] = [];
 
   while (randomNumbers.length < count) {
     const randomNumber = Math.floor(Math.random() * range);
 
     // Checks if the number is not in the array of used numbers or the result array.
-    if (!usedNumbers.includes(randomNumber) && !randomNumbers.includes(randomNumber)) {
+    if (
+      !usedNumbers.includes(randomNumber) &&
+      !randomNumbers.includes(randomNumber)
+    ) {
       randomNumbers.push(randomNumber);
     }
   }
@@ -455,7 +467,11 @@ function generateNewUniqueRandomNumbers(count: number, range: number, usedNumber
  */
 function playAgain(): void {
   // Generate new random numbers excluding the used question indices.
-  const newRandomNumbersArray = generateNewUniqueRandomNumbers(10, 40, randomNumbersArray);
+  const newRandomNumbersArray = generateNewUniqueRandomNumbers(
+    10,
+    40,
+    randomNumbersArray
+  );
 
   // Add the new random numbers for next round to the variable randomNumbersArray.
   randomNumbersArray = newRandomNumbersArray;
@@ -475,7 +491,7 @@ function playAgain(): void {
   if (timerElement !== null) {
     timerElement.innerText = '00:00';
   }
-  
+
   // Hide Finish btn.
   if (finishBtn !== null) {
     finishBtn.classList.add('hidden');
@@ -484,7 +500,7 @@ function playAgain(): void {
   if (nextQuestionBtn !== null) {
     nextQuestionBtn.classList.remove('hidden');
   }
-  
+
   // Hide the last page
   if (lastPage !== null) {
     lastPage.classList.add('hidden');
@@ -511,4 +527,3 @@ function playAgain(): void {
 if (tryAgainBtn !== null) {
   tryAgainBtn.addEventListener('click', playAgain);
 }
-
