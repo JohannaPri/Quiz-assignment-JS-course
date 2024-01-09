@@ -37,14 +37,14 @@
   <body>
     <header>
       <img
-        src="/src/assets/images/lemons-logo-blue-background.png"
+        src="/src/assets/images/lemons-logo-transparent-background.png"
         alt="Lemons logo with yellow text and a slice of lemon"
         width="1500"
         height="566"
       >
     </header>
 
-    <!----------------------FIRST PAGE---------------------->
+    <!--************************* FIRST PAGE *************************-->
 
     <div class="start-page" id="start-page">
       <div class="text-container-start">
@@ -62,18 +62,13 @@
       <button class="start-quiz-btn" id="start-quiz-btn">Start quiz</button>
     </div>
 
-    <!----------------------GAME PAGE---------------------->
+    <!--************************* GAME PAGE *************************-->
 
     <div class="game-page hidden" id="game-page">
       <div class="game-page-content">
         <div class="game-stat">
-          <div class="question-number-container">
-            <div class="question-number" id="question-number"></div>
-          </div>
-          <div class="time-count-container">
-            <span id="timer" class="time-count"></span>
-            <!--<span class="quiz-progress"></span>-->
-          </div>
+          <span class="question-number" id="question-number"></span>
+          <span class="time-count" id="timer" ></span>
         </div>
         <div class="question-container">
           <span class="question" id="question"></span>
@@ -89,19 +84,18 @@
       </div>
     </div>
 
-    <!----------------------LAST PAGE---------------------->
+    <!--************************* LAST PAGE *************************-->
 
     <div class="last-page hidden" id="last-page">
       <div class="last-page-content">
         <div class="quiz-summary">
-          <h3 class="results-heading">Your results!</h3>
+          <span class="results-heading">Your results!</span>
 
           <p class="results">
             You got
             <span class="results-text" id="results-text"></span> points in
             <span class="results-time" id="results-time"></span> seconds.
           </p>
-          <!-- Different text depending on score? -->
         </div>
 
         <div class="try-again-btn-container">
