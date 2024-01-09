@@ -347,7 +347,7 @@ function showNextQuestion(): void {
 
     if (question !== null) {
       question.innerText =
-        'Well done, you have answered all the questions!\n Click Finish to see your result!';
+      'Well done!\n You have answered all the questions.\n Click Finish to see your results!';
     }
 
     if (alternative0Btn !== null) {

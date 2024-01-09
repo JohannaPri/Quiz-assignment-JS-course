@@ -1,61 +1,63 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/ZejtqupA)
-# Projektmall FED23D
-Läs instruktionerna på kurswebben för att komma igång.
+# The Lemon's Music Quiz
 
-## Betyg
-Klicka i vilka krav ni har gjort:
+*This was a group assignment in the basic JavaScript course and the Agile project course at the Front End Development program at Medieinstitutet Stockholm.*
 
-- [x] Exempel på utförd/ikryssad uppgift
-- [ ] Ej utförd uppgift
+This is a prototype of a movie music quiz app.
 
-### För Icke Godkänt
-- [ ] Du har inte deltagit i arbetet och/eller gjort commits (det syns tydligt i Insights-fliken på ert repo)
-- [ ] Du/ni har inte följt instruktionerna
-- [ ] Du/ni uppvisar avsaknad av kunskaper i såväl HTML, CSS som JavaScript och du/ni har ignorerat semantik och tillgänglighet
+The project contains an array of 40 movie music related quiz questions. Each question has three answer alternatives, where only one alternative is correct. 
 
-### För Godkänt
-#### Kodkvalitet
-- [x] Koden är korrekt formaterad.
-- [x] Koden innehåller enstaka buggar, men fungerar på det stora hela.
-- [x] Ni har gjort åtminstone en mobilversion; om ni återanvänder samma layout i tablet/desktop så går det bra.
-- [x] Sidan ska vara någorlunda snygg (CSS).
-- [ ] Ni har checkat av "vanliga misstag" från tidigare uppgifter, såväl HTML & CSS som JavaScript.
-- [ ] Sidan är tillgänglighetsgranskad.
-- [ ] Sidan är validerad.
-- [ ] Ni har gjort en Lighthouse-analys på live-sidan.
+10 questionss are randomly selected from the question-array and shown one by one in the first round of the game, toghether with the three answer alterniatives printed at one button each.
 
-#### Funktionsbeskrivning
-- [x] Skapa ett quiz med minst 20 frågor
-- [x] Varje fråga ska ha 3 svarsalternativ och endast 1 svarsalternativ ska vara korrekt
-- [x] Frågorna ska presenteras i slumpmässig ordning, och du ska visa 10 frågor per spelomgång
-- [x] Om användaren väljer att spela igen, så ska inte samma 10 frågor komma upp på nytt
-- [x] Du ska få poäng för rätt svar
-- [x] Det ska bara visas en fråga åt gången på skärmen
-- [x] Det ska finnas en tidräkning (uppåt). Tidräkningen ska stanna när alla frågor har besvarats.
-- [x] Det ska visas en bekräftelseruta som visar hur många frågor spelaren svarade rätt på (av totalt antal frågor), och hur lång tid det tog.
-- [ ] Varje person ska ha gjort minst två pull requests.
+When the user chooses an alternative and clicks it they will see the button turn green if it was the correct answer, or red if it was wrong. When the user clicks the Next-button the next question will be shown. 
 
-### För plus i kanten
-#### Kodkvalitet
-- [x] Koden följer konventioner och praxis.
-- [x] Projektets utförande är ambitiöst och väl genomarbetat. Ni har inte tagit på er för mycket, utan sett till att det ni har är genomarbetat.
-- [ ] Ni har tagit höjd för responsiv design (CSS) och CSS:en är välskriven.
-- [x] Koden är korrekt formaterad med ESLint och Prettier.
-- [x] Projektets kod är självdokumenterande. Där det är otydligt har du skrivit till kommentarer. Exempelvis heter variabler och funktioner på ett sådant sätt att det är tydligt vad de gör.
-- [x] Ni har aktivt arbetat för att minska kodupprepning, men det är OK om det förekommer en del. Ibland kan kodupprepning t.ex. vara bra för att koden blir tydligare att läsa, så all upprepning är inte av ondo.
-- [x] Ingen spaghettikod :spaghetti:
-- [x] Anonyma funktioner används med omsorg.
-- [x] Koden och projektet har en logisk struktur.
-- [ ] Ni har skrivit en ordentlig README (projektbeskrivning, skrämdumpar, deltagare i arbetet).
+When the user has answered all 10 questions a result-page will be shown letting the user know how many correct answer they got and how long time it took. 
 
-#### Funktionsbeskrivning
-- [ ] Det ska finnas en "progess bar" som visar hur många av frågorna som hittills har besvarats
-- [ ] Flera svarsalternativ ska kunna vara korrekta
-- [ ] Du får olika poäng beroende på hur snabbt du svarar på frågan (ni får komma på själva hur det ska funka, dokumentera i README:n)
-- [ ] Du får minuspoäng om du svarar fel
-- [ ] Du ska kunna välja vem du vill spela som, eller skapa en ny användare (förutsättningen här är att man använder samma webbläsare; använd local storage). Se exempelskiss nedan.
-- [ ] Implementera ett highscore (max 10 platser) med hjälp av local storage
-- [ ] Det ska finnas med en animation för rätt svar, och en animation för fel svar. Det kan t.ex. vara en stjärna som roterar, byter färg, eller en knapp som skakar. Vad ni gör spelar ingen roll, men ni ska implementera det med hjälp av GSAP.
-- Välj ett av nedan:
-  - [ ] Man ska kunna välja att spela mellan lätta, medelsvåra och svåra frågor. Planera hur detta påverkar highscoren.
-  - [ ] Det ska vara som en julkalender: bakom varje lucka (24 st) så visas det X antal nya frågor per dag.
+If the user choses to play again another 10 random numbers will be shown in the second game round, making sure it will not be the same questions as in the first round. 
+
+
+
+## Authors
+
+- [@fannyestrom](https://github.com/fannyestrom)
+- [@SaraGdbg](https://github.com/SaraGdbg)
+- [@JohannaPri](https://github.com/JohannaPri)
+- [@ReginaJM](https://github.com/ReginaJM)
+
+
+## Demo
+
+https://medieinstitutet.github.io/fed23d-javascript-grundkurs-gruppuppgift-citronerna/
+
+
+
+## Built with
+
+- HTML
+- CSS
+- Sass
+- JavaScript
+- TypeScript
+- Node.js
+- Vite
+
+
+## Team work methodology
+
+- Agile WoW
+
+## Screenshots
+
+- Start page
+![Start page](./src/documentation/screenshots/start-page.png)
+
+- Game page
+![Game page](./src/documentation/screenshots/game-page.png)
+
+- Finish page
+![Finish page](./src/documentation/screenshots/finish-page.png)
+
+- Results page
+![Results page](./src/documentation/screenshots/results-page.png)
+
+
+

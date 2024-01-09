@@ -17,16 +17,12 @@ body {
 
 /* START PAGE */
 
-/*h1 {
-    font-size: 2.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    padding-bottom: 20px;
-}*/
-
 header {
   display: flex;
   justify-content: center;
+  img {
+    display: flex;
+  }
 }
 
 img {
@@ -58,7 +54,7 @@ button {
   font-size: 1.3rem;
   padding-top: 30px;
   padding-bottom: 10px;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.02rem;
   word-spacing: 0.03rem;
   border-top: solid 1px black;
   border-bottom: solid 1px black;
@@ -91,7 +87,7 @@ button {
   align-items: center;
 }
 
-.start-quiz-btn {
+.start-quiz-btn, .finish-btn, .try-again-btn  {
   display: flex;
   font-size: 1.5rem;
   height: 50px;
@@ -120,13 +116,9 @@ button {
   font-weight: bold;
   margin-top: 5px;
   color: #fff;
-  width: 100%;
   height: 30px;
-  justify-content: space-around;
-  .time-count-container {
-    right: 30px;
-    position: absolute;
-  }
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .question-container {
@@ -135,7 +127,6 @@ button {
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  margin-bottom: 15px;
   max-width: 100%;
   height: 500px;
   text-align: center;
@@ -153,7 +144,8 @@ button {
   font-weight: bold;
   font-style: italic;
   height: 150px;
-  margin-bottom: -20px;
+  margin-bottom: -20px; 
+  justify-content: center;
 }
 
 .next-question-btn {
@@ -162,6 +154,12 @@ button {
   font-size: 1.5rem;
   background-color: $lightlemon;
   border: solid 4px $lemonyellow;
+  margin-top: 40px;
+}
+
+.alternatives {
+  display: flex;
+  flex-direction: column;
 }
 
 .alternative-btn {
@@ -189,10 +187,7 @@ button {
 
 /* LAST PAGE */
 
-.last-page-content {
-  flex-direction: column;
-  align-items: center;
-}
+
 
 .quiz-summary {
   background-color: $lightblue;
@@ -200,7 +195,6 @@ button {
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  margin-bottom: 15px;
   max-width: 100%;
   height: 500px;
   text-align: center;
@@ -213,15 +207,23 @@ button {
   justify-content: center;
 }
 
-.try-again-btn {
-  display: flex;
-  font-size: 1.5rem;
-  height: 50px;
-  width: 340px;
-  margin-top: 40px;
-  background-color: $lightlemon;
-  border: solid 4px $lemonyellow;
-  justify-content: center;
+.results-heading {
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+  text-transform: capitalize;
+  margin: 0 0 30px 0;
+  font-weight: bold;
 }
+
+.results {
+  font-size: 1.25rem;
+  letter-spacing: 0.02rem;
+}
+
+.results-text,
+.results-time {
+  font-weight: bold;
+}
+
 
 // TODO: Style blue boxes on all pages using one class or existing classes in one
