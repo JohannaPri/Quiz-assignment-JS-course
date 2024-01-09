@@ -116,11 +116,17 @@ button {
 
 .game-stat {
   display: flex;
-  outline: 5px solid red;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 5px;
   color: #fff;
+  width: 100%;
+  height: 30px;
+  justify-content: space-around;
+  .time-count-container {
+    right: 30px;
+    position: absolute;
+  }
 }
 
 .question-container {
